@@ -6,6 +6,19 @@
     <% else %>
       <h1>Welcome back!</h1>
     <% end %>
+
+      <div class="col-md-4">
+        <% @categories.each do |category| %>
+          <h2><%=category.name %></h2>
+          <% category.display_user_goals(@user).each do |goal| %>
+            <ul>
+            <li><%= goal.task %></li>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+
+
       <div class="col-md-4">
         <%= render 'users/friends_feed' %>
       </div>
