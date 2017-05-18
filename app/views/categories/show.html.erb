@@ -1,0 +1,7 @@
+<h1><%= @category.name %></h1>
+
+<ul>
+<% @category.goals.each do |goal| %>
+  <li><%= goal.task %></li>
+<% end %>
+</ul>
