@@ -3,7 +3,8 @@
   <div class="">
     <% @categories.each do |category| %>
       <div class="">
-        <h3><a href="/categories/<%=category.id%>"><%= category.name %></a></h3>
+        <h2><a href="/categories/<%=category.id%>"><%= category.name %></a></h2>
+        <h4>Top Picks</h4>
         <ul>
           <% category.top_five_goals.each do |goal| %>
             <li><%= goal.task %></li>
