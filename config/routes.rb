@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   root 'homepage#index'
   resources :sessions, only: [:new, :create, :destroy]
   resources :connections, only: [:create, :destroy]
+  resources :users, only: [:destroy, :create, :update]
   resources :users do
-    only: [:destroy, :create, :update]
     get "/friends" => "users#friends"
   end
 
