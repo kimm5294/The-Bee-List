@@ -1,0 +1,8 @@
+<div id="friends-feed">
+  <h4><a href="/users/<%= @user.id %>/friends">Friends (<%= @user.friends.count %>)</a></h4>
+  <ul>
+    <% @user.five_friends.each do |friend| %>
+      <li class="friends-list"><a href="/users/<%= friend.id %>"><%= friend.username %></a></li>
+    <% end %>
+  </ul>
+</div>

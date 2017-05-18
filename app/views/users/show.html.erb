@@ -1,0 +1,38 @@
+<% if logged_in? %>
+  <div id="profile-page">
+  <% if @user.id == current_user.id %>
+    <% if !!@user.first_name %>
+      <h1>Welcome back, <%= @user.first_name %></h1>
+    <% else %>
+      <h1>Welcome back!</h1>
+    <% end %>
+
+
+      <div class="col-md-4">
+        <%= render 'users/friends_feed' %>
+      </div>
+
+    </div>
+  <% else %>
+    <div class="current-user-page">
+      <h1>This is the profile page of <%= @user.username %></h1>
+
+      <% if current_user.is_friends_with?(@user) %>
+        <%= link_to "Unfriend", connection_path(current_user.connection(@user), user_id: @user.id),
+            method: :delete %>
+      <% else %>
+        <%= form_for Connection.new do |f| %>
+          <%= hidden_field_tag "connection[friendee_id]", "#{@user.id}" %>
+          <%= submit_tag("Add Friend") %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+<% else %>
+  <div class="row" id="profile-page">
+    <h1>This is the profile page of <%= @user.username %></h1>
+  </div>
+<% end %>
+
+</div>
