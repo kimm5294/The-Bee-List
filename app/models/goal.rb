@@ -5,4 +5,8 @@ class Goal < ApplicationRecord
   has_many :goals_users
   has_many :users, through: :goals_users
   belongs_to :category
+
+  def users_count
+    self.users.count
+  end
 end

@@ -1,0 +1,21 @@
+<div class="">
+  <h1>Categories List</h1>
+  <div class="">
+    <% @categories.each do |category| %>
+      <div class="">
+        <h2><a href="/categories/<%=category.id%>"><%= category.name %></a></h2>
+        <h4>Top Picks</h4>
+        <ul>
+          <% category.top_five_goals.each do |goal| %>
+            <li><%= goal.task %></li>
+            <form method="post" action="/goals_users">
+              <input type="hidden" name="goal_id" value="<%= goal.id %>">
+              <button type="submit">Add to goals</button>
+            </form>
+            <br>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>

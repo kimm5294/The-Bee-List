@@ -1,0 +1,12 @@
+<h1><%= @category.name %></h1>
+
+<ul>
+<% @category.goals.each do |goal| %>
+  <li><%= goal.task %></li>
+  <form method="post" action="/goals_users">
+    <input type="hidden" name="goal_id" value="<%= goal.id %>">
+    <button type="submit">Add to goals</button>
+  </form>
+  <br>
+<% end %>
+</ul>
