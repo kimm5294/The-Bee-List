@@ -9,8 +9,8 @@ class User < ApplicationRecord
   has_many :connections_as_friendee, class_name: "Connection", foreign_key: "friendee_id"
   has_many :friendees, through: :connections_as_friender
   has_many :frienders, through: :connections_as_friendee
-  has_many :goalsusers
-  has_many :goals, through: :goalsusers
+  has_many :goals_users
+  has_many :goals, through: :goals_users
 
   def friends
     self.frienders + self.friendees
