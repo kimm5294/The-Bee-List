@@ -1,3 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'homepage#index'
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :connections, only: [:create, :destroy]
+  resources :users do
+    only: [:destroy, :create, :update]
+    get "/friends" => "users#friends"
+  end
+
+  get "/search" => 'users#search'
 end
