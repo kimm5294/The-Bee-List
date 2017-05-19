@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
+    @categories = Category.all
   end
 
   def new

@@ -3,7 +3,7 @@ class ConnectionsController < ApplicationController
     @user = User.find_by(id: params[:connection][:friendee_id])
     connection = Connection.new(friender_id: session[:user_id], friendee_id: @user.id)
     if connection.save
-      render 'users/show'
+      redirect_to "/users/#{@user.id}"
     else
       render 'users/show'
     end
@@ -12,8 +12,13 @@ class ConnectionsController < ApplicationController
   def destroy
     @user = User.find_by(id: params[:user_id])
     connection = Connection.find_by(id: params[:id])
-    connection.destroy
-    render 'users/show'
+
+    if connection
+      connection.destroy
+      render 'users/show'
+    else
+      redirect_to "/users/#{@user.id}"
+    end
   end
 
 end
