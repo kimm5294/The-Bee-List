@@ -1,0 +1,29 @@
+<h2><%= @category.name  %> Search Results</h2>
+
+<% if @errors %>
+  <%= @errors %>
+<% end %>
+
+<% if @results %>
+  <ul>
+    <% @results.each do |result| %>
+      <li><%=result.title %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @places %>
+  <ul>
+    <% @places.each do |place| %>
+      <li><%=place.description %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @eats %>
+  <ul>
+    <% @eats.each do |eat| %>
+      <li><strong><%=eat.name %></strong>- <%=eat.formatted_address %></li>
+    <% end %>
+  </ul>
+<% end %>
