@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
   resources :goals_users, only: [:create]
   root 'homepage#index'
+  resources :goals, only: [:show, :create]
   resources :sessions, only: [:new, :create, :destroy]
   resources :connections, only: [:create, :destroy]
   resources :users, only: [:destroy, :create, :update]
