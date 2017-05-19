@@ -111,6 +111,7 @@ Goal.create(task:"Learn chess", category_id:7)
 
 
 User.create(first_name:"Matt", last_name:"Kim", username:"MKto", email:"matt@email.com", password:"password")
+User.create(first_name:"Nanu", last_name:"Brar", username:"Meow", email:"nanu@email.com", password:"password")
 User.create(first_name:"Kevin", last_name:"Brody", username:"Kdawgg", email:"kevin@email.com", password:"password")
 User.create(first_name:"James", last_name:"Richards", username:"Jdawgg", email:"james@email.com", password:"password")
 User.create(first_name:"Shane", last_name:"Murphy", username:"shane", email:"shane@email.com", password:"password")
