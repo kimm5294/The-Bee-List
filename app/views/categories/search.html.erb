@@ -4,10 +4,20 @@
   <%= @errors %>
 <% end %>
 
-<% if @results %>
+<h2>Database Results</h2>
+<% if @database_results %>
   <ul>
-    <% @results.each do |result| %>
-      <li><%=result.title %></li>
+    <% @database_results.each do |result| %>
+      <li><%=result.task %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h3>API Results</h3>
+<% if @api_results %>
+  <ul>
+    <% @api_results.each do |result| %>
+      <li><%=result %></li>
     <% end %>
   </ul>
 <% end %>
