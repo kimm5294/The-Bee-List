@@ -1,22 +1,22 @@
 module CategoriesHelper
-  def omdb_movie_search
-    @category = Category.find_by_id(params[:cat_id])
+
+  def omdb_movie_search(database_ids)
     search_params = OMDB.search(params["search"])
     result = OMDB.search(params["search"])
-    if search_params.class != Array || result.length ==0
+    if search_params.class != Array || result.length == 0
       @errors= "No results found"
     else
-      @results= result.select{|film| film.type=="movie"}
+      @api_results= result.select{|film| film.type == "movie" && !database_ids.include?(film.imdb_id)}.map {|film| film.title}
     end
   end
 
-  def omdb_tv_search
+  def omdb_tv_search(database_ids)
     search_params = OMDB.search(params["search"])
     result = OMDB.search(params["search"])
     if search_params.class != Array || result.length ==0
       @errors= "No results found"
     else
-      @results = result.select{|film| film.type=="series"}
+      @api_results = result.select{|film| film.type=="series" && !database_ids.include?(film.imdb_id)}.map{|film| film.title}
     end
   end
 
@@ -25,13 +25,14 @@ module CategoriesHelper
     if search_params.first.class == NilClass
       @errors = "No book found"
     else
-      @results = search_params
+      @api_results = search_params.map{|book| book.title}
     end
   end
 
   def google_places_search
     client = GooglePlaces::Client.new(ENV["GOOGLE_PLACES_KEY"])
     returns = client.predictions_by_input(params["search"], types:'(regions)')
+    p returns
     if returns.length == 0
       @errors = "No results found"
     else
