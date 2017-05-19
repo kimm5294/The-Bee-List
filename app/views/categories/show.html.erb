@@ -2,7 +2,7 @@
 
 <ul>
 <% @category.goals.each do |goal| %>
-  <li><%= goal.task %></li>
+  <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a></li>
   <form method="post" action="/goals_users">
     <input type="hidden" name="goal_id" value="<%= goal.id %>">
     <button type="submit">Add to goals</button>
