@@ -14,9 +14,13 @@ class CategoriesController < ApplicationController
 
     case @category.id
     when 1
-      omdb_movie_search
+      @database_results = @category.search_database(params["search"])
+      database_ids = @category.database_results_ids(params["search"])
+      @api_results = omdb_movie_search(database_ids)
     when 2
-      omdb_tv_search
+      @database_results = @category.search_database(params["search"])
+      database_ids = @category.database_results_ids(params["search"])
+      @api_results = omdb_tv_search(database_ids)
     when 3
       google_books_search
     when 4
