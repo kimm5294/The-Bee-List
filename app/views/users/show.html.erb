@@ -10,21 +10,33 @@
       <div class="col-md-4">
         <% @categories.each do |category| %>
           <h2><a href="/categories/<%= category.id %>"><%=category.name %></a></h2>
-          <% category.display_user_goals(@user).each do |goal| %>
+          <% category.display_current_user_goals(@user).each do |goal| %>
             <ul>
-            <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a></li>
-            <form class="" action="index.html" method="post">
+            <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a> | <%= link_to 'Complete', goals_user_path(goal.id), method: :put %></li>
+
+            <!-- <form class="" action="index.html" method="post">
               <input type="submit" value="Completed">
-            </form>
+            </form> -->
             </ul>
           <% end %>
         <% end %>
       </div>
 
+      <div class="col-md-4" id="completed-goals">
+        <h2><%= @user.first_name %>, your completed goals.</h2>
+        <% @categories.each do |category| %>
+            <% category.display_completed_user_goals(@user).each do |goal| %>
+              <ul>
+                <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a></li>
+              </ul>
+            <% end %>
+          <% end %>
+      </div>
 
       <div class="col-md-4">
         <%= render 'users/friends_feed' %>
       </div>
+
 
     </div>
   <% else %>
@@ -39,12 +51,22 @@
         <div class="col-md-4">
           <% @categories.each do |category| %>
             <h2><%=category.name %></h2>
-            <% category.display_user_goals(@user).each do |goal| %>
+            <% category.display_current_user_goals(@user).each do |goal| %>
               <ul>
               <li><%= goal.task %></li>
               </ul>
             <% end %>
           <% end %>
+        </div>
+        <div class="col-md-4" id="completed-goals">
+          <h2><%= @user.first_name %>s completed goals.</h2>
+          <% @categories.each do |category| %>
+              <% category.display_completed_user_goals(@user).each do |goal| %>
+                <ul>
+                  <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a></li>
+                </ul>
+              <% end %>
+            <% end %>
         </div>
       <% else %>
         <%= form_for Connection.new do |f| %>

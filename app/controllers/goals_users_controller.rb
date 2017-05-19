@@ -5,4 +5,13 @@ class GoalsUsersController < ApplicationController
     redirect_to "/"
   end
 
+  def update
+    goal_user = GoalsUser.find_by(user: current_user, goal_id: params[:id])
+    goal_user.update_attributes(completed: true)
+    redirect_to "/users/#{current_user.id}"
+  end
+
+  def destroy
+  end
+
 end
