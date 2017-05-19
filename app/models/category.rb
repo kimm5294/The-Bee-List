@@ -10,4 +10,15 @@ class Category < ApplicationRecord
   def display_user_goals(user)
     self.goals.joins(:goals_users).where(goals_users: {user_id: user.id})
   end
+
+  def search_database(search_query)
+    database_results = self.goals.select do |goal|
+      goal.task.downcase.include?(search_query.downcase) == true
+    end
+  end
+
+  def database_results_ids(search_query)
+    self.search_database(search_query).map{|goal| goal.goal_id}
+  end
+
 end
