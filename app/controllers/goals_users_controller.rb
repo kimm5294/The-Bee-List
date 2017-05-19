@@ -1,6 +1,7 @@
 class GoalsUsersController < ApplicationController
 
   def create
+    p params
     GoalsUser.create(user_id: current_user.id, goal_id: params[:goal_id])
     redirect_to "/"
   end

@@ -49,7 +49,7 @@
             <h2><a href="/categories/<%= category.id %>"><%=category.name %></a></h2>
             <% category.display_current_user_goals(@user).each do |goal| %>
               <ul>
-              <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a></li>
+              <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a> | <span><%= link_to "Add to Goals", goals_users_path(goal_id: goal.id), method: :post%></span></li>
               </ul>
             <% end %>
           <% end %>

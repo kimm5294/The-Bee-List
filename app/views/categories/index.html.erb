@@ -8,10 +8,7 @@
         <ul>
           <% category.top_five_goals.each do |goal| %>
             <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a></li>
-            <form method="post" action="/goals_users">
-              <input type="hidden" name="goal_id" value="<%= goal.id %>">
-              <button type="submit">Add to goals</button>
-            </form>
+              <%= link_to "Add to Goals", goals_users_path(goal_id: goal.id), method: :post%>
             <br>
           <% end %>
         </ul>
