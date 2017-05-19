@@ -38,4 +38,10 @@ class User < ApplicationRecord
       return nil
     end
   end
+
+  def friends_with_goal(goal)
+    self.friends.select do |friend|
+      friend.goals.include?(goal)
+    end
+  end
 end
