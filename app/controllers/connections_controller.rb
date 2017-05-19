@@ -12,8 +12,13 @@ class ConnectionsController < ApplicationController
   def destroy
     @user = User.find_by(id: params[:user_id])
     connection = Connection.find_by(id: params[:id])
-    connection.destroy
-    render 'users/show'
+
+    if connection
+      connection.destroy
+      render 'users/show'
+    else
+      redirect_to "/users/#{@user.id}"
+    end
   end
 
 end
