@@ -27,3 +27,11 @@
     <% end %>
   </ul>
 <% end %>
+
+<% if @friends %>
+  <ul>
+    <% @friends.each do |eat| %>
+      <li><strong><%=eat %></strong></li>
+    <% end %>
+  </ul>
+<% end %>
