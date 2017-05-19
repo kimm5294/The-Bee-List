@@ -18,12 +18,7 @@
             <a href="/"><%= image_tag("bees.jpg", size: "200x45") %></a>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-left" method="GET" action="/search">
-              <div class="form-group">
-                <input type="text" name="name" class="form-control" placeholder="Search">
-              </div>
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+
             <ul class="nav navbar-nav navbar-right">
               <% if logged_in? %>
                 <li><%= link_to "Categories", categories_path %></li>
