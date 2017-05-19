@@ -37,7 +37,7 @@ Goal.create(task:"Scarface", category_id:1)
 Goal.create(task:"Horton Hears a Who", category_id:1)
 Goal.create(task:"Pokemon 2000", category_id:1)
 
-Goal.create(task:"Game of Thrones", category_id:2)
+Goal.create(task:"Game of Thrones", category_id:2, image_url: "http://media.moddb.com/images/members/1/123/122021/profile/c9lzmv4d3mgzpnyntz7s.jpg", data: {:actors=>"Peter Dinklage, Lena Headey, Emilia Clarke, Kit Harington", :plot=>"Nine noble families fight for control over the mythical lands of Westeros; A forgotten race returns after being dormant for thousands of years.", :year=>"2011–"})
 Goal.create(task:"The Americans", category_id:2)
 Goal.create(task:"Chopped", category_id:2)
 Goal.create(task:"Iron Chef", category_id:2)
@@ -291,4 +291,3 @@ Connection.create(friender_id: 9, friendee_id: 10)
 Connection.create(friender_id: 9, friendee_id: 1)
 Connection.create(friender_id: 10, friendee_id: 1)
 Connection.create(friender_id: 10, friendee_id: 2)
-
