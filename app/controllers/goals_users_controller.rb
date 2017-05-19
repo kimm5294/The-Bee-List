@@ -12,6 +12,9 @@ class GoalsUsersController < ApplicationController
   end
 
   def destroy
+    goal_user = GoalsUser.find_by(user: current_user, goal_id: params[:id])
+    goal_user.destroy
+    redirect_to "/users/#{current_user.id}"
   end
 
 end

@@ -12,11 +12,7 @@
           <h2><a href="/categories/<%= category.id %>"><%=category.name %></a></h2>
           <% category.display_current_user_goals(@user).each do |goal| %>
             <ul>
-            <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a> | <%= link_to 'Complete', goals_user_path(goal.id), method: :put %></li>
-
-            <!-- <form class="" action="index.html" method="post">
-              <input type="submit" value="Completed">
-            </form> -->
+            <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a> | <%= link_to 'Complete', goals_user_path(goal.id), method: :put %> | <%= link_to "Remove", goals_user_path(goal.id), method: :delete%></li>
             </ul>
           <% end %>
         <% end %>
@@ -50,10 +46,10 @@
 
         <div class="col-md-4">
           <% @categories.each do |category| %>
-            <h2><%=category.name %></h2>
+            <h2><a href="/categories/<%= category.id %>"><%=category.name %></a></h2>
             <% category.display_current_user_goals(@user).each do |goal| %>
               <ul>
-              <li><%= goal.task %></li>
+              <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a></li>
               </ul>
             <% end %>
           <% end %>
