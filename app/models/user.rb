@@ -44,4 +44,14 @@ class User < ApplicationRecord
       friend.goals.include?(goal)
     end
   end
+
+  def completed_goal?(user_goal)
+    goal = self.goals_users.where("goal_id = '#{user_goal.id}'").first
+    goal.completed
+  end
+
+  def wrote_review_already?(user_goal)
+    goal = self.goals_users.where("goal_id = '#{user_goal.id}'").first
+    !goal.review.nil?
+  end
 end
