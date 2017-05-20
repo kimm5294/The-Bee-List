@@ -9,7 +9,7 @@
   <ul>
     <% @database_results.each do |result| %>
       <li>
-        <a href="#"><%=result.task %></a>
+        <%=result.task %>
         <% if current_user.goals.include?(result) %>
           | <span>Goal is in your bucket list</span>
         <% else %>
@@ -24,7 +24,10 @@
 <% if @api_results %>
   <ul>
     <% @api_results.each do |result| %>
-      <li><%=result %></li>
+      <li>
+        <%= result.keys[0] %>
+        | <span><%= link_to "Add to Goals", goals_path(category_id: @category.id, task: result.keys[0], api_id: result.values[0]), method: :post%></span>
+      </li>
     <% end %>
   </ul>
 <% end %>

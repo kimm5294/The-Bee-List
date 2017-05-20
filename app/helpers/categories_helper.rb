@@ -25,7 +25,7 @@ module CategoriesHelper
     if search_params.first.class == NilClass
       "No book found"
     else
-      api_results = search_params.select{|book| !database_ids.include?(book.id)}.map{|book| book.title}
+      api_results = search_params.select{|book| !database_ids.include?(book.id)}.map{|book| {book.title => book.id}}
     end
   end
 
