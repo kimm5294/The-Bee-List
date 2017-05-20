@@ -47,7 +47,7 @@ class CategoriesController < ApplicationController
       if search_result.class == String
         @errors = "No results found"
       else
-        @api_results = search_result.map{|place|place.description}
+        @api_results = search_result
       end
     when 5
       @database_results = @category.search_database(params["search"])
@@ -56,7 +56,7 @@ class CategoriesController < ApplicationController
       if search_result.class == String
         @errors = "No results found"
       else
-        @api_results = search_result.map{|eat|eat.name}
+        @api_results = search_result
       end
     end
   end

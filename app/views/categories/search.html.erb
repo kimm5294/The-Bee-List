@@ -4,11 +4,18 @@
   <%= @errors %>
 <% end %>
 
-<h2>Database Results</h2>
+<h3>Database Results</h3>
 <% if @database_results %>
   <ul>
     <% @database_results.each do |result| %>
-      <li><%=result.task %></li>
+      <li>
+        <%=result.task %>
+        <% if current_user.goals.include?(result) %>
+          | <span>Goal is in your bucket list</span>
+        <% else %>
+          | <span><%= link_to "Add to Goals", goals_users_path(goal_id: result.id), method: :post%></span>
+        <% end %>
+      </li>
     <% end %>
   </ul>
 <% end %>
@@ -17,8 +24,10 @@
 <% if @api_results %>
   <ul>
     <% @api_results.each do |result| %>
-      <li><%=result %></li>
+      <li>
+        <%= result.keys[0] %>
+        | <span><%= link_to "Add to Goals", goals_path(category_id: @category.id, task: result.keys[0], api_id: result.values[0]), method: :post%></span>
+      </li>
     <% end %>
   </ul>
 <% end %>
-
