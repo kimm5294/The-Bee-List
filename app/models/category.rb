@@ -22,7 +22,7 @@ class Category < ApplicationRecord
   end
 
   def database_results_ids(search_query)
-    self.search_database(search_query).map{|goal| goal.goal_id}
+    self.search_database(search_query).map{|goal| goal.api_id}
   end
 
 end
