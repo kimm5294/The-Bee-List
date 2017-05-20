@@ -16,20 +16,48 @@ class CategoriesController < ApplicationController
     when 1
       @database_results = @category.search_database(params["search"])
       database_ids = @category.database_results_ids(params["search"])
-      @api_results = omdb_movie_search(database_ids)
+      search_result = omdb_movie_search(database_ids)
+      if search_result.class == String
+        @errors = "No results found"
+      else
+        @api_results = search_result
+      end
     when 2
       @database_results = @category.search_database(params["search"])
       database_ids = @category.database_results_ids(params["search"])
-      @api_results = omdb_tv_search(database_ids)
+      search_result = omdb_tv_search(database_ids)
+      if search_result.class == String
+        @errors = "No results found"
+      else
+        @api_results = search_result
+      end
     when 3
-      google_books_search
+      @database_results = @category.search_database(params["search"])
+      database_ids = @category.database_results_ids(params["search"])
+      search_result = google_books_search(database_ids)
+      if search_result.class == String
+        @errors = "No results found"
+      else
+        @api_results = search_result
+      end
     when 4
-      google_places_search
+      @database_results = @category.search_database(params["search"])
+      database_ids = @category.database_results_ids(params["search"])
+      search_result = google_places_search(database_ids)
+      if search_result.class == String
+        @errors = "No results found"
+      else
+        @api_results = search_result.map{|place|place.description}
+      end
     when 5
-      # Will need to update
-      PgSearch.multisearch(params["search"])
-    when 6
-      google_restaurant_search
+      @database_results = @category.search_database(params["search"])
+      database_ids = @category.database_results_ids(params["search"])
+      search_result = google_restaurant_search(database_ids)
+      if search_result.class == String
+        @errors = "No results found"
+      else
+        @api_results = search_result.map{|eat|eat.name}
+      end
     end
   end
 
