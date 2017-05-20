@@ -27,7 +27,7 @@
   <ul>
     <% @goal.goals_users.each do |user_goal| %>
       <% if !user_goal.review.nil? %>
-        <li><%= user_goal.review %> by <%= user_goal.user.username %></li>
+        <li><%= user_goal.review %> by <%= link_to user_goal.user.username, user_path(user_goal.user) %></li>
       <% end %>
     <% end %>
   </ul>
