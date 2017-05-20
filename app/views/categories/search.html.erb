@@ -8,7 +8,14 @@
 <% if @database_results %>
   <ul>
     <% @database_results.each do |result| %>
-      <li><%=result.task %></li>
+      <li>
+        <a href="#"><%=result.task %></a>
+        <% if current_user.goals.include?(result) %>
+          | <span>Goal is in your bucket list</span>
+        <% else %>
+          | <span><%= link_to "Add to Goals", goals_users_path(goal_id: result.id), method: :post%></span>
+        <% end %>
+      </li>
     <% end %>
   </ul>
 <% end %>
