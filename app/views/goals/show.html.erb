@@ -1,16 +1,34 @@
 <img id="goal-picture" src="<%= @goal.image_url %>" alt="">
 <h1><%= @goal.task %></h1>
-<span><%= link_to "Add to Goals", goals_users_path(goal_id: @goal.id), method: :post%></span>
+<% if !current_user.goals.include?(@goal) %>
+  <span><%= link_to "Add to Goals", goals_users_path(goal_id: @goal.id), method: :post%></span>
+<% end %>
 <% if @goal.data %>
   <% @goal.data.each do |key, value| %>
   <span class="goal-details"><strong><%= key %></strong> - <%= value %></span>
   <% end %>
 <% end %>
 
-<span class="goal-count"><strong><%= pluralize(@goal.users_count, 'person') %> have added this to their bucket list.</strong></span>
+<span class="goal-count"><strong><%= pluralize(@goal.users_count, 'person') %> added this to their bucket list.</strong></span>
 <span class="goal-count"><%= current_user.friends_with_goal(@goal).count %> <i>of your friends have added this goal.</i></span>
 
 
 <div class="user-review-completed">
   <h4>Reviews</h4>
+  <% if current_user.goals.include?(@goal) %>
+    <% if current_user.completed_goal?(@goal) && !current_user.wrote_review_already?(@goal) %>
+      <h5>Add Review:</h5>
+      <%= form_tag(goals_user_path(@goal.id, completed: true), method: :put) do %>
+        <%= text_area_tag(:review, "", size: "36x6") %><br>
+        <%= submit_tag("Submit") %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <ul>
+    <% @goal.goals_users.each do |user_goal| %>
+      <% if !user_goal.review.nil? %>
+        <li><%= user_goal.review %> by <%= user_goal.user.username %></li>
+      <% end %>
+    <% end %>
+  </ul>
 </div>
