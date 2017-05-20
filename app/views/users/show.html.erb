@@ -6,9 +6,33 @@
     <% else %>
       <h1>Welcome back!</h1>
     <% end %>
+
+      <div class="col-md-4">
+        <% @categories.each do |category| %>
+          <h2><a href="/categories/<%= category.id %>"><%=category.name %></a></h2>
+          <% category.display_current_user_goals(@user).each do |goal| %>
+            <ul>
+            <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a> | <%= link_to 'Complete', goals_user_path(goal.id), method: :put %> | <%= link_to "Remove", goals_user_path(goal.id), method: :delete%></li>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="col-md-4" id="completed-goals">
+        <h2><%= @user.first_name %>, your completed goals.</h2>
+        <% @categories.each do |category| %>
+            <% category.display_completed_user_goals(@user).each do |goal| %>
+              <ul>
+                <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a></li>
+              </ul>
+            <% end %>
+          <% end %>
+      </div>
+
       <div class="col-md-4">
         <%= render 'users/friends_feed' %>
       </div>
+
 
     </div>
   <% else %>
@@ -18,6 +42,28 @@
       <% if current_user.is_friends_with?(@user) %>
         <%= link_to "Unfriend", connection_path(current_user.connection(@user), user_id: @user.id),
             method: :delete %>
+        <br>
+
+        <div class="col-md-4">
+          <% @categories.each do |category| %>
+            <h2><a href="/categories/<%= category.id %>"><%=category.name %></a></h2>
+            <% category.display_current_user_goals(@user).each do |goal| %>
+              <ul>
+              <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a></li>
+              </ul>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col-md-4" id="completed-goals">
+          <h2><%= @user.first_name %>s completed goals.</h2>
+          <% @categories.each do |category| %>
+              <% category.display_completed_user_goals(@user).each do |goal| %>
+                <ul>
+                  <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a></li>
+                </ul>
+              <% end %>
+            <% end %>
+        </div>
       <% else %>
         <%= form_for Connection.new do |f| %>
           <%= hidden_field_tag "connection[friendee_id]", "#{@user.id}" %>

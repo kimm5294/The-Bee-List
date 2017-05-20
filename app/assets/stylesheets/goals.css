@@ -1,0 +1,17 @@
+#goal-picture {
+  float: left;
+  width: 184px;
+  height: 184px;
+  margin: 10px;
+}
+
+.goal-details {
+  /*margin-top: 10px;*/
+  padding: 5px;
+  display: block;
+}
+
+.goal-count {
+  display: block;
+  clear: both;
+}
