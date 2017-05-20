@@ -11,5 +11,5 @@ Rails.application.routes.draw do
     get "/friends" => "users#friends"
   end
 
-  get "/search" => 'users#search'
+  get "/search" => 'categories#search'
 end
