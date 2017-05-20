@@ -14,7 +14,6 @@
 <ul>
 <% @category.goals.each do |goal| %>
   <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a> | <span><%= link_to "Add to Goals", goals_users_path(goal_id: goal.id), method: :post%></span></li>
-
   <br>
 <% end %>
 </ul>

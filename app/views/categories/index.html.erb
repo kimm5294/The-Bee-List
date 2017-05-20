@@ -7,9 +7,7 @@
         <h4>Top Picks</h4>
         <ul>
           <% category.top_five_goals.each do |goal| %>
-            <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a></li>
-              <%= link_to "Add to Goals", goals_users_path(goal_id: goal.id), method: :post%>
-            <br>
+            <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a> | <%= link_to "Add to Goals", goals_users_path(goal_id: goal.id), method: :post%></li>
           <% end %>
         </ul>
       </div>
