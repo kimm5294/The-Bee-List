@@ -1,52 +1,51 @@
+require 'omdbapi'
 module CategoriesHelper
 
   def omdb_movie_search(database_ids)
     search_params = OMDB.search(params["search"])
-    result = OMDB.search(params["search"])
-    if search_params.class != Array || result.length == 0
-      @errors= "No results found"
+    p search_params
+    if search_params.class != Array || search_params.length == 0
+      "error"
     else
-      @api_results= result.select{|film| film.type == "movie" && !database_ids.include?(film.imdb_id)}.map {|film| film.title}
+      result.select{|film| film.type == "movie" && !database_ids.include?(film.imdb_id)}.map {|film| film.title}
     end
   end
 
   def omdb_tv_search(database_ids)
-    search_params = OMDB.search(params["search"])
     result = OMDB.search(params["search"])
-    if search_params.class != Array || result.length ==0
-      @errors= "No results found"
+    if result.class != Array || result.length ==0
+      "No results found"
     else
-      @api_results = result.select{|film| film.type=="series" && !database_ids.include?(film.imdb_id)}.map{|film| film.title}
+      api_results = result.select{|film| film.type=="series" && !database_ids.include?(film.imdb_id)}.map{|film| film.title}
     end
   end
 
-  def google_books_search
+  def google_books_search(database_ids)
     search_params = GoogleBooks.search(params["search"])
     if search_params.first.class == NilClass
-      @errors = "No book found"
+      "No book found"
     else
-      @api_results = search_params.map{|book| book.title}
+      api_results = search_params.select{|book| !database_ids.include?(book.id)}.map{|book| book.title}
     end
   end
 
-  def google_places_search
-    client = GooglePlaces::Client.new(ENV["GOOGLE_PLACES_KEY"])
+  def google_places_search(database_ids)
+    client = GooglePlaces::Client.new("AIzaSyBjfu4hhTsevzx0eYFeqjzzsZ_TmktebN0")
     returns = client.predictions_by_input(params["search"], types:'(regions)')
-    p returns
     if returns.length == 0
       @errors = "No results found"
     else
-      @places = returns
+      @places = returns.select{|place| !database_ids.include?(place.place_id)}
     end
   end
 
-  def google_restaurant_search
-    client = GooglePlaces::Client.new(ENV["GOOGLE_PLACES_KEY"])
+  def google_restaurant_search(database_ids)
+    client = GooglePlaces::Client.new("AIzaSyBjfu4hhTsevzx0eYFeqjzzsZ_TmktebN0")
     returns = client.spots_by_query(params["search"], :types => ['restaurant', 'food', 'cafe'])
-    if returns.length == 0 || returns.errors.any?
+    if returns.length == 0
       @errors = "No results found"
     else
-      @eats = returns
+      @eats = returns.select{|place| !database_ids.include?(place.place_id)}
     end
   end
 end
