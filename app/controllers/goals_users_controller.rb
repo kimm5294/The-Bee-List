@@ -7,7 +7,7 @@ class GoalsUsersController < ApplicationController
 
   def update
     goal_user = GoalsUser.find_by(user: current_user, goal_id: params[:id])
-    goal_user.update_attributes(completed: true)
+    goal_user.update_attributes({completed: params[:completed], review: params[:review]})
     redirect_to "/users/#{current_user.id}"
   end
 
