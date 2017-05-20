@@ -12,7 +12,7 @@
           <h2><a href="/categories/<%= category.id %>"><%=category.name %></a></h2>
           <% category.display_current_user_goals(@user).each do |goal| %>
             <ul>
-            <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a> | <%= link_to 'Complete', goals_user_path(goal.id), method: :put %> | <%= link_to "Remove", goals_user_path(goal.id), method: :delete%></li>
+            <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a> | <%= link_to 'Complete', goals_user_path(goal.id, completed: true), method: :put %> | <%= link_to "Remove", goals_user_path(goal.id), method: :delete%></li>
             </ul>
           <% end %>
         <% end %>
