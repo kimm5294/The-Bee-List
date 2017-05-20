@@ -22,26 +22,3 @@
   </ul>
 <% end %>
 
-<% if @places %>
-  <ul>
-    <% @places.each do |place| %>
-      <li><%=place.description %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<% if @eats %>
-  <ul>
-    <% @eats.each do |eat| %>
-      <li><strong><%=eat.name %></strong>- <%=eat.formatted_address %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<% if @friends %>
-  <ul>
-    <% @friends.each do |eat| %>
-      <li><strong><%=eat %></strong></li>
-    <% end %>
-  </ul>
-<% end %>
