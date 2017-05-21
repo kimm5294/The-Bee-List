@@ -1,19 +1,15 @@
-<%= form_for :session, url:sessions_path do |f| %>
-<%= render 'shared/error_messages' %>
-<div class="login-form">
+<form id="login-form" method="post" action="/sessions">
+  <div class="imgcontainer">
+    <img src="/assets/img_avatar2.png" alt="Avatar" class="avatar">
+  </div>
+  <%= render 'shared/error_messages' %>
+  <div class="container">
+    <label><b>Email</b></label>
+    <input id="login-email" type="text" placeholder="Enter Email" name="session[email]" required>
 
-  <h2>Login Below</h2>
-    <p>
-      <%= f.label :email %>
-      <%= f.email_field :email %>
-    </p>
+    <label><b>Password</b></label>
+    <input id="login-password" type="password" placeholder="Enter Password" name="session[password]" required>
 
-     <p>
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-    </p>
-    <p>
-      <%= f.submit "Log In" %>
-    </p>
-</div>
-<% end %>
+    <button id="login-button" type="submit">Login</button>
+  </div>
+</form>
