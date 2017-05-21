@@ -1,36 +1,27 @@
-<%= form_for :user, url:users_path do |f| %>
-<%= render 'shared/error_messages' %>
-  <p>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </p>
+<form id="register-form" method="post" action="/users">
+  <div class="reg-header">
+    <h2>Register</h2>
+  </div>
+  <%= render 'shared/error_messages' %>
+  <div class="container">
+    <label><b>First Name</b></label>
+    <input id="reg-first-name" type="text" placeholder="Enter First Name" name="user[first_name]" required>
 
-  <p>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </p>
+    <label><b>Last Name</b></label>
+    <input id="reg-last-name" type="text" placeholder="Enter Last Name" name="user[last_name]" required>
 
-  <p>
-    <%= f.label :username %>
-    <%= f.text_field :username %>
-  </p>
+    <label><b>Username</b></label>
+    <input id="reg-username" type="text" placeholder="Enter Username" name="user[username]" required>
 
-  <p>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-  </p>
+    <label><b>Email</b></label>
+    <input id="reg-email" type="email" placeholder="Enter Email" name="user[email]" required>
 
-   <p>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </p>
+    <label><b>Password</b></label>
+    <input id="reg-password" type="password" placeholder="Enter Password" name="user[password]" required>
 
-   <p>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </p>
+    <label><b>Password Confirmation</b></label>
+    <input id="reg-password-confirmation" type="password" placeholder="Enter Password Confirmation" name="user[password_confirmation]" required>
 
-  <p>
-    <%= f.submit "Register" %>
-  </p>
-<% end %>
+    <button id="reg-button" type="submit">Sign Up</button>
+  </div>
+</form>
