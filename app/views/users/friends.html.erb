@@ -1,7 +1,7 @@
-<h1><%= @user.username %>'s friends (<%= @user.friends.count %>)</h1>
+<h1><%= @user.username.capitalize %>'s Friends (<%= @user.friends.count %>)</h1>
 
 <ul>
   <% @user.friends.each do |friend| %>
-    <li><a href="/users/<%= friend.id %>"><%= friend.username %></a></li>
+    <li class="friends-list"><a href="/users/<%= friend.id %>"><%= friend.username %></a></li>
   <% end %>
 </ul>
