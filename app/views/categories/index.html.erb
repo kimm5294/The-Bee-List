@@ -1,15 +1,31 @@
-<div class="">
-  <h1>Categories List</h1>
-  <div class="">
+<div class="container">
+  <h1 class="categories-header">Categories List</h1>
+  <div class="row">
     <% @categories.each do |category| %>
-      <div class="">
-        <h2><a href="/categories/<%=category.id%>"><%= category.name %></a></h2>
-        <h4>Top Picks</h4>
-        <ul>
-          <% category.top_five_goals.each do |goal| %>
-            <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a> <% if !current_user.goals.include?(goal) %> | <%= link_to "Add to Goals", goals_users_path(goal_id: goal.id), method: :post%><% end %></li>
-          <% end %>
-        </ul>
+      <div class="col-xs-4">
+        <div class="panel panel-warning">
+
+          <div class="header-location panel-heading">
+            <h2><a href="/categories/<%=category.id%>"><%= category.name %></a></h2>
+          </div>
+
+          <div class="panel-body">
+            <h4 class="top-picks">Top Picks</h4>
+            <ul class="top-five-picks list-group">
+              <% category.top_five_goals.each do |goal| %>
+                <li class="list-group-item top-five-list-items">
+                  <a href="/goals/<%= goal.id %>"><%= goal.task %></a>
+                  <% if !current_user.goals.include?(goal) %>
+                    <%= link_to goals_users_path(goal_id: goal.id), method: :post, class: "add-goal-link btn btn-default btn-xs" do %>
+                      <span class="glyphicon glyphicon-plus"></span>
+                    <% end %>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+
+        </div>
       </div>
     <% end %>
   </div>
