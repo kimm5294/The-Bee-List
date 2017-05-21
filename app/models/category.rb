@@ -16,8 +16,12 @@ class Category < ApplicationRecord
   end
 
   def search_database(search_query)
-    database_results = self.goals.select do |goal|
-      goal.task.downcase.include?(search_query.downcase) == true
+    if !search_query.empty?
+      database_results = self.goals.select do |goal|
+        goal.task.downcase.include?(search_query.downcase) == true
+      end
+    else
+      []
     end
   end
 
