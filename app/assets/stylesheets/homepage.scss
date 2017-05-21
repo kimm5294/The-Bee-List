@@ -1,3 +1,135 @@
 // Place all the styles related to the homepage controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+.main {
+  position: relative;
+}
+
+.main video {
+  width: 100%;
+}
+
+.main .content {
+  position: absolute;
+  top: 200px;
+  width: 100%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.main h1 {
+color:#fff;
+  font-size:50px;
+  margin-top:0;
+  margin-bottom:50px;
+  text-shadow:0 2px 3px rgba(0,0,0,.4);
+  padding: 0 40px;
+  text-align:center;
+}
+
+.main .login-btn {
+
+ 	background-color:#4386FC;
+  border:none;
+  border-radius: 8px;
+  color: white;
+  font-size: 18px;
+  letter-spacing: 1.3px;
+  padding: 10px 60px;
+  margin-bottom: 100px;
+  display: inline-block;
+  text-align: center;
+  position:absolute; // nearly 50%, but not exactly 50%
+  left: 25%;
+}
+
+.main .register-btn {
+
+ 	background-color:#4386FC;
+  border:none;
+  border-radius: 8px;
+  color: white;
+  font-size: 18px;
+  letter-spacing: 1.3px;
+  padding: 10px 60px;
+  margin-bottom: 100px;
+  display: inline-block;
+  text-align: center;
+  position:absolute; // nearly 50%, but not exactly 50%
+  left: 50%;
+}
+
+
+.supporting {
+  margin-top: 100px;
+  margin-bottom: 130px;
+  text-align:center;
+  padding-top: 50px;
+
+
+}
+
+.supporting h2 {
+  font-size: 48px;
+  font-weight: 300;
+  margin-top:40px;
+  margin-bottom:40px
+
+}
+
+.supporting p {
+  color: #333;
+  font-size: 21px;
+  font-weight: 300;
+  padding: 0 30px;
+}
+.app{width:87px}
+
+.feature {
+  height: 500px;
+  background: url(http://www.afb.org/image.ashx?ImageID=7264);
+  background-size:cover;
+}
+.supporting .btn {
+   	background-color:#4386FC;
+  border:none;
+  border-radius: 8px;
+  color: white;
+  font-size: 18px;
+  letter-spacing: 1.3px;
+  padding: 10px 60px;
+  margin-bottom: 100px;
+  text-align: center;
+  margin-left: 25px;
+}
+
+.footer {
+  padding: 30px;
+  background-color: #eeeeee;
+  width: 100%;
+}
+
+@media (max-width: 960px) {
+  .main {
+    height: 540px;
+  }
+  .main video {
+    height: 540px;
+    width: 960px;
+  }
+  .main h1 {
+    font-size: 32px;
+  }
+}
