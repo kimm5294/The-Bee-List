@@ -1,0 +1,25 @@
+h2  {
+  font-family:"Apple Chancery";
+  margin: auto;
+
+}
+
+.header-location {
+  text-align: center;
+}
+
+.add-goal-link {
+  float: right;
+}
+
+.categories-header {
+  text-align: center;
+}
+
+.top-five-picks {
+  border: none;
+}
+
+.top-five-list-items {
+
+}
