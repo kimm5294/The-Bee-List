@@ -25,7 +25,19 @@ module CategoriesHelper
     if search_params.first.class == NilClass
       "No book found"
     else
-      api_results = search_params.select{|book| !database_ids.include?(book.id)}.map{|book| {book.title => book.id}}
+      books = search_params.select{|book| !database_ids.include?(book.id)}
+      api_results = books.map do |book|
+        book_info = []
+        book_info.push(
+          book.title,
+          book.id,
+          {
+            author: book.authors,
+            plot: book.description
+          },
+          book.image_link
+        )
+      end
     end
   end
 
@@ -35,7 +47,14 @@ module CategoriesHelper
     if returns.length == 0
       @errors = "No results found"
     else
-      @places = returns.select{|place| !database_ids.include?(place.place_id)}.map{|place| {place.description => place.place_id}}
+      places = returns.select{ |place| !database_ids.include?(place.place_id)}
+      api_results = places.map do |place|
+        place_info = []
+        place_info.push(
+          place.description,
+          place.place_id
+        )
+      end
     end
   end
 
@@ -45,7 +64,25 @@ module CategoriesHelper
     if returns.length == 0
       @errors = "No results found"
     else
-      @eats = returns.select{|place| !database_ids.include?(place.place_id)}.map{|eat| {eat.name => eat.place_id}}
+      eats = returns.select{|place| !database_ids.include?(place.place_id)}
+      api_results = eats.map do |eat|
+        if eat.opening_hours["open_now"] == true
+          open_now = "yes"
+        else
+          open_now = "no"
+        end
+        place_info = []
+        place_info.push(
+          eat.name,
+          eat.place_id,
+          {
+            address: eat.formatted_address,
+            "open now?": open_now,
+            "price level (0-4)": eat.price_level,
+            "Google rating": eat.rating
+          }
+        )
+      end
     end
   end
 end

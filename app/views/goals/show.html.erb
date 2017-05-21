@@ -5,7 +5,7 @@
 <% end %>
 <% if @goal.data %>
   <% @goal.data.each do |key, value| %>
-  <span class="goal-details"><strong><%= key %></strong> - <%= value %></span>
+    <span class="goal-details"><strong><%= key %>:</strong> <%= value %></span>
   <% end %>
 <% end %>
 
