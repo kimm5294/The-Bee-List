@@ -1,33 +1,76 @@
-<h2><%= @category.name  %> Search Results</h2>
+<div class="container">
 
-<% if @errors %>
-  <%= @errors %>
-<% end %>
+<div class="row">
+  <h2><%= @category.name  %> Search Results</h2>
 
-<h3>Database Results</h3>
-<% if @database_results %>
-  <ul>
-    <% @database_results.each do |result| %>
-      <li>
-        <%=result.task %>
-        <% if current_user.goals.include?(result) %>
-          | <span>Goal is in your bucket list</span>
-        <% else %>
-          | <span><%= link_to "Add to Goals", goals_users_path(goal_id: result.id), method: :post%></span>
-        <% end %>
-      </li>
+  <% if @errors %>
+    <%= @errors %>
+  <% end %>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <h3>Database Results</h3>
+    <% index = 0 %>
+    <% if @database_results %>
+      <% @database_results.each do |result| %>
+        <div class="panel-group" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading<%= index %>">
+              <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapse<%= index %>" aria-expanded="false" aria-controls="collapse<%= index %>">
+                  <%= result.task %>
+                </a>
+                <% if current_user.goals.include?(result) %>
+                  | <span>Goal is in your bucket list</span>
+                <% else %>
+                  | <span><%= link_to "Add to Goals", goals_users_path(goal_id: result.id), method: :post%></span>
+                <% end %>
+              </h4>
+            </div>
+            <div id="collapse<%= index %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= index %>">
+              <div class="panel-body">
+                <% if !!result.data %>
+                  <% result.data.each do |key, value| %>
+                    <span class="goal-details"><strong><%= key %>:</strong> <%= value %></span>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% index += 1 %>
+      <% end %>
     <% end %>
-  </ul>
-<% end %>
+  </div>
 
-<h3>API Results</h3>
-<% if @api_results %>
-  <ul>
-    <% @api_results.each do |result| %>
-      <li>
-        <%= result.keys[0] %>
-        | <span><%= link_to "Add to Goals", goals_path(category_id: @category.id, task: result.keys[0], api_id: result.values[0]), method: :post%></span>
-      </li>
+  <div class="col-md-6">
+    <h3>API Results</h3>
+    <% if @api_results %>
+      <% @api_results.each do |result| %>
+        <div class="panel-group" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading<%= index %>">
+              <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" href="#collapse<%= index %>" aria-expanded="false" aria-controls="collapse<%= index %>">
+                  <%= result[0] %>
+                </a>
+                | <span><%= link_to "Add to Goals", goals_path(category_id: @category.id, task: result[0], api_id: result[1], data: result[2], image_url: result[3]), method: :post%></span>
+              </h4>
+            </div>
+            <div id="collapse<%= index %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= index %>">
+              <div class="panel-body">
+                <% result[2].each do |key, value| %>
+                  <span class="goal-details"><strong><%= key %>:</strong> <%= value %></span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% index += 1 %>
+      <% end %>
     <% end %>
-  </ul>
-<% end %>
+  </div>
+</div>
+
+</div>
