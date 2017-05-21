@@ -1,25 +1,73 @@
 <% if logged_in? %>
-  <div id="profile-page">
+  <div id="w">
   <% if @user.id == current_user.id %>
+    <div id="content" class="cleafix">
     <% if !!@user.first_name %>
-      <h1>Welcome back, <%= @user.first_name %></h1>
+      <h1>Welcome Back, <%= @user.first_name %></h1>
     <% else %>
-      <h1>Welcome back!</h1>
+      <h1>Welcome Back!</h1>
     <% end %>
+    <br>
+    <nav id="profiletabs">
+      <ul class="clearfix">
+        <li><a href="#uncomplete-goals" class="sel">Goals to Complete</a></li>
+        <li><a href="#finished-goals">Finished Goals</a></li>
+        <li><a href="#friends">Friends</a></li>
+      </ul>
+    </nav>
+    <section id="uncomplete-goals">
+      <% @categories.each do |category| %>
+        <h2><a href="/categories/<%= category.id %>"><%=category.name %></a></h2>
+        <% category.display_current_user_goals(@user).each do |goal| %>
+          <ul>
+          <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a> | <%= link_to 'Complete', goals_user_path(goal.id, completed: true), method: :put %> | <%= link_to "Remove", goals_user_path(goal.id), method: :delete%></li>
+          </ul>
+        <% end %>
+      <% end %>
+    </section>
 
-      <div class="col-md-4">
+    <section id="finished-goals" class="hidden">
+      <br>
+      <% @categories.each do |category| %>
+        <% category.display_completed_user_goals(@user).each do |goal| %>
+          <ul>
+            <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a></li>
+            </ul>
+        <% end %>
+      <% end %>
+    </section>
+
+    <section id="friends" class="hidden">
+      <%= render 'users/friends_feed' %>
+    </section>
+    </div>
+  </div>
+  <% else %>
+    <div id="w">
+      <div id="content" class="clearfix">
+        <h1><%= @user.username.capitalize %>'s Profile</h1>
+        <% if current_user.is_friends_with?(@user) %>
+          <%= link_to "Unfriend", connection_path(current_user.connection(@user), user_id: @user.id),
+              method: :delete %>
+      <br><br>
+      <nav id="profiletabs">
+        <ul class="clearfix">
+          <li><a href="#uncomplete-goals" class="sel">Goals to Complete</a></li>
+          <li><a href="#finished-goals">Finished Goals</a></li>
+          <li><a href="#friends">Friends</a></li>
+        </ul>
+      </nav>
+      <section id="uncomplete-goals">
         <% @categories.each do |category| %>
           <h2><a href="/categories/<%= category.id %>"><%=category.name %></a></h2>
           <% category.display_current_user_goals(@user).each do |goal| %>
             <ul>
-            <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a> | <%= link_to 'Complete', goals_user_path(goal.id, completed: true), method: :put %> | <%= link_to "Remove", goals_user_path(goal.id), method: :delete%></li>
+            <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a><% if !current_user.goals.include?(goal) %> | <span><%= link_to "Add to Goals", goals_users_path(goal_id: goal.id), method: :post%></span><% end %></li>
             </ul>
           <% end %>
         <% end %>
-      </div>
-
-      <div class="col-md-4" id="completed-goals">
-        <h2><%= @user.first_name %>, your completed goals.</h2>
+      </section>
+      <section id="finished-goals" class="hidden">
         <% @categories.each do |category| %>
             <% category.display_completed_user_goals(@user).each do |goal| %>
               <ul>
@@ -27,44 +75,12 @@
               </ul>
             <% end %>
           <% end %>
-      </div>
-
-      <div class="col-md-4">
+      </section>
+      <section id="friends" class="hidden">
         <%= render 'users/friends_feed' %>
-      </div>
-
-
-    </div>
-  <% else %>
-    <div class="current-user-page">
-      <h1>This is the profile page of <%= @user.username %></h1>
-
-      <% if current_user.is_friends_with?(@user) %>
-        <%= link_to "Unfriend", connection_path(current_user.connection(@user), user_id: @user.id),
-            method: :delete %>
-        <br>
-
-        <div class="col-md-4">
-          <% @categories.each do |category| %>
-            <h2><a href="/categories/<%= category.id %>"><%=category.name %></a></h2>
-            <% category.display_current_user_goals(@user).each do |goal| %>
-              <ul>
-              <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a><% if !current_user.goals.include?(goal) %> | <span><%= link_to "Add to Goals", goals_users_path(goal_id: goal.id), method: :post%></span><% end %></li>
-              </ul>
-            <% end %>
-          <% end %>
-        </div>
-        <div class="col-md-4" id="completed-goals">
-          <h2><%= @user.first_name %>s completed goals.</h2>
-          <% @categories.each do |category| %>
-              <% category.display_completed_user_goals(@user).each do |goal| %>
-                <ul>
-                  <li><a href="/goals/<%= goal.id %>"><%= goal.task %></a></li>
-                </ul>
-              <% end %>
-            <% end %>
-        </div>
+      </section>
       <% else %>
+      <br>
         <%= form_for Connection.new do |f| %>
           <%= hidden_field_tag "connection[friendee_id]", "#{@user.id}" %>
           <%= submit_tag("Add Friend") %>
@@ -78,5 +94,4 @@
     <h1>This is the profile page of <%= @user.username %></h1>
   </div>
 <% end %>
-
 </div>
