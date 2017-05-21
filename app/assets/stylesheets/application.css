@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+#carousel-hero {
+  margin: auto;
+  width: 70%;
+  height: 30%;
+}
+
+#carousel-hero > div > div > img{
+  height: 400px;
+  width: 100%;
+}
