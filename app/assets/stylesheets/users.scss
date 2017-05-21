@@ -77,7 +77,7 @@ ol, ul { list-style: none; }
 
 #profiletabs ul { list-style: none; display: block; width: 70%; height: 50px; }
 #profiletabls ul li { float: left; }
-#profiletabs ul li a { 
+#profiletabs ul li a {
   display: block;
   float: left;
   padding: 8px 11px;
@@ -116,20 +116,10 @@ ol, ul { list-style: none; }
   left: 5%;
 }
 
-#friends-feed ul li {
-  position: relative;
-  right: 6%;
-}
-
-.friends-list {
-  position: relative;
-  right: 4%;
-}
-
 /** clearfix **/
 .clearfix:after { content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; }
 .clearfix { display: inline-block; }
- 
+
 html[xmlns] .clearfix { display: block; }
 * html .clearfix { height: 1%; }
 
@@ -151,5 +141,13 @@ html[xmlns] .clearfix { display: block; }
 }
 :-ms-input-placeholder { /* Internet Explorer 10+ */
   color: #ccc !important;
-  font-style: italic;  
+  font-style: italic;
+}
+
+.list-remove-item-button {
+  float:right;
+}
+
+.list-mark-done-button {
+  float:right;
 }
