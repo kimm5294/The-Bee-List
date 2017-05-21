@@ -17,19 +17,18 @@
           <div class="navbar-header">
             <a href="/"><%= image_tag("bee-list-logo.png", size: "180x45") %></a>
           </div>
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-            <ul class="nav navbar-nav navbar-right">
-              <% if logged_in? %>
-                <li><%= link_to "Categories", categories_path %></li>
-                <li><%= link_to "Log out", session_path(current_user), method: :delete %></li>
-                <li><%= link_to "Profile", user_path(current_user) %></li>
-              <% else %>
-                <li><%= link_to "Log In", new_session_path %></li>
-                <li><%= link_to "Register", new_user_path %></li>
-              <% end %>
-            </ul>
-          </div>
+          <ul class="nav navbar-nav">
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <% if logged_in? %>
+              <li><%= link_to "Categories", categories_path %></li>
+              <li><%= link_to "Log out", session_path(current_user), method: :delete %></li>
+              <li><%= link_to "Profile", user_path(current_user) %></li>
+            <% else %>
+              <li><%= link_to "Log In", new_session_path %></li>
+              <li><%= link_to "Register", new_user_path %></li>
+            <% end %>
+          </ul>
         </div>
       </nav>
     </div>
