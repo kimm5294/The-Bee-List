@@ -1,3 +1,46 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+// Place all the styles related to the sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#register-form {
+    border: 3px solid #f1f1f1;
+}
+
+/* Full-width inputs */
+input[id=reg-email], input[id=reg-password], input[id=reg-first-name], input[id=reg-last-name], input[id=reg-username], input[id=reg-password-confirmation] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+#reg-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Add a hover effect for buttons */
+#reg-button:hover {
+    opacity: 0.8;
+}
+
+/* Center the avatar image inside this container */
+.reg-header {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+/* Add padding to containers */
+.container {
+    padding: 16px;
+}
