@@ -12,7 +12,7 @@
 
   <body>
     <div class="row">
-      <nav class="navbar navbar-default">
+      <nav class="navbar bg-primary">
         <div class="container-fluid">
           <div class="navbar-header">
             <a href="/"><%= image_tag("bee-list-logo.png", size: "180x45") %></a>
@@ -35,6 +35,17 @@
     </div>
     <div class="container-fluid" id="main">
       <%= yield %>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="container">
+        <p>&copy;The Bee-List
+
+
+        </p>
+
+      </div>
     </div>
   </body>
 </html>
