@@ -1,22 +1,58 @@
-require 'omdbapi'
 module CategoriesHelper
 
   def omdb_movie_search(database_ids)
-    search_params = OMDB.search(params["search"])
-    p search_params
+    # query = params["search"].to_query('')
+    uri = URI.parse("http://www.omdbapi.com/?apikey=#{ENV['IMDB_KEY']}&s=#{params["search"]}")
+    response = Net::HTTP.get_response(uri)
+    body = JSON.parse(response.body)
+    search_params = body["Search"]
     if search_params.class != Array || search_params.length == 0
       "error"
     else
-      result.select{|film| film.type == "movie" && !database_ids.include?(film.imdb_id)}.map {|film| {film.title => film.imdb_id}}
+      movies = search_params.select{|film| film["Type"] == "movie" && !database_ids.include?(film["imdbID"])}
+      api_results = movies.map do |movie|
+        movie_uri = URI.parse("http://www.omdbapi.com/?apikey=#{ENV['IMDB_KEY']}&i=#{movie["imdbID"]}")
+        movie_response = Net::HTTP.get_response(movie_uri)
+        movie_body = JSON.parse(movie_response.body)
+        movie_info = []
+        movie_info.push(
+          movie_body["Title"],
+          movie_body["imdbID"],
+          {
+            year: movie_body["Year"],
+            plot: movie_body["Plot"]
+          },
+          movie_body["Poster"]
+        )
+      end
+      api_results
     end
   end
 
   def omdb_tv_search(database_ids)
-    result = OMDB.search(params["search"])
-    if result.class != Array || result.length ==0
+    uri = URI.parse("http://www.omdbapi.com/?apikey=#{ENV['IMDB_KEY']}&s=#{params["search"]}")
+    response = Net::HTTP.get_response(uri)
+    body = JSON.parse(response.body)
+    search_params = body["Search"]
+    if search_params.class != Array || search_params.length ==0
       "No results found"
     else
-      api_results = result.select{|film| film.type=="series" && !database_ids.include?(film.imdb_id)}.map{|film| {film.title => film.imdb_id}}
+      shows = search_params.select{|film| film["Type"] =="series" && !database_ids.include?(film["imdbID"])}
+      api_results = shows.map do |show|
+        show_uri = URI.parse("http://www.omdbapi.com/?apikey=#{ENV['IMDB_KEY']}&i=#{show["imdbID"]}")
+        show_response = Net::HTTP.get_response(show_uri)
+        show_body = JSON.parse(show_response.body)
+        show_info = []
+        show_info.push(
+          show_body["Title"],
+          show_body["imdbID"],
+          {
+            year: show_body["Year"],
+            plot: show_body["Plot"]
+          },
+          show_body["Poster"]
+        )
+      end
     end
   end
 

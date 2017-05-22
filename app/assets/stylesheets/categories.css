@@ -26,3 +26,11 @@ h2 a {
 .top-five-list-items {
 
 }
+
+.categories-search-button {
+  float: right;
+}
+
+.search-button {
+  float:right;
+}

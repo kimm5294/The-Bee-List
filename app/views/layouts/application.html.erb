@@ -13,7 +13,7 @@
 
   <body>
     <div class="row">
-      <nav class="navbar navbar-default">
+      <nav class="navbar bg-primary">
         <div class="container-fluid">
           <div class="navbar-header">
             <a href="/"><%= image_tag("bee-list-logo.png", size: "180x45") %></a>
@@ -23,6 +23,7 @@
           <ul class="nav navbar-nav navbar-right">
             <% if logged_in? %>
               <li><%= link_to "Categories", categories_path %></li>
+              <li><%= link_to "Mailbox", conversations_path, class: "item" %></li>
               <li><%= link_to "Profile", user_path(current_user) %></li>
               <li><%= link_to "Log out", session_path(current_user), method: :delete %></li>
             <% else %>
@@ -36,7 +37,7 @@
     <div class="container-fluid" id="main">
       <%= yield %>
     </div>
-    <!-- Footer -->
+
     <div class="footer">
       <div class="container">
         <p>&copy;The Bee-List
