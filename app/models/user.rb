@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :goals_users
   has_many :goals, through: :goals_users
 
+  has_many :conversations, :foreign_key => :sender_id
   def friends
     self.frienders + self.friendees
   end
