@@ -2,7 +2,7 @@ module CategoriesHelper
 
   def omdb_movie_search(database_ids)
     # query = params["search"].to_query('')
-    uri = URI.parse("http://www.omdbapi.com/?apikey=9e1ed130&s=#{params["search"]}")
+    uri = URI.parse("http://www.omdbapi.com/?apikey=#{ENV['IMDB_KEY']}&s=#{params["search"]}")
     response = Net::HTTP.get_response(uri)
     body = JSON.parse(response.body)
     search_params = body["Search"]
@@ -11,7 +11,7 @@ module CategoriesHelper
     else
       movies = search_params.select{|film| film["Type"] == "movie" && !database_ids.include?(film["imdbID"])}
       api_results = movies.map do |movie|
-        movie_uri = URI.parse("http://www.omdbapi.com/?apikey=9e1ed130&i=#{movie["imdbID"]}")
+        movie_uri = URI.parse("http://www.omdbapi.com/?apikey=#{ENV['IMDB_KEY']}&i=#{movie["imdbID"]}")
         movie_response = Net::HTTP.get_response(movie_uri)
         movie_body = JSON.parse(movie_response.body)
         movie_info = []
@@ -30,7 +30,7 @@ module CategoriesHelper
   end
 
   def omdb_tv_search(database_ids)
-    uri = URI.parse("http://www.omdbapi.com/?apikey=9e1ed130&s=#{params["search"]}")
+    uri = URI.parse("http://www.omdbapi.com/?apikey=#{ENV['IMDB_KEY']}&s=#{params["search"]}")
     response = Net::HTTP.get_response(uri)
     body = JSON.parse(response.body)
     search_params = body["Search"]
@@ -39,7 +39,7 @@ module CategoriesHelper
     else
       shows = search_params.select{|film| film["Type"] =="series" && !database_ids.include?(film["imdbID"])}
       api_results = shows.map do |show|
-        show_uri = URI.parse("http://www.omdbapi.com/?apikey=9e1ed130&i=#{show["imdbID"]}")
+        show_uri = URI.parse("http://www.omdbapi.com/?apikey=#{ENV['IMDB_KEY']}&i=#{show["imdbID"]}")
         show_response = Net::HTTP.get_response(show_uri)
         show_body = JSON.parse(show_response.body)
         show_info = []
