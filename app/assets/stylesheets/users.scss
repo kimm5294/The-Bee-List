@@ -42,30 +42,23 @@ input[id=reg-email], input[id=reg-password], input[id=reg-first-name], input[id=
 
 /* Add padding to containers */
 .container {
-    padding: 16px;
+  width: 800em;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
 ol, ul { list-style: none; }
 
 /** page structure **/
-#w {
-  display: block;
-  width: 750px;
-  margin: 0 auto;
-  padding-top: 30px;
-  padding-bottom: 45px;
-}
-
 #content {
-  display: block;
-  width: 100%;
-  background: #fff;
-  padding: 25px 20px;
-  padding-bottom: 35px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  // display: block;
+  width: 75%;
+  // margin: auto;
+  // background: #fff;
+  // padding: 25px 20px;
+  // padding-bottom: 35px;
+  // -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  // -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  // box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 }
 
 /** profile nav links **/
@@ -111,17 +104,17 @@ ol, ul { list-style: none; }
   display: none;
 }
 
-#uncomplete-goals, #friends {
-  position: relative;
-  left: 5%;
-}
+// #uncomplete-goals, #friends {
+//   position: relative;
+//   left: 5%;
+// }
 
 /** clearfix **/
-.clearfix:after { content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; }
-.clearfix { display: inline-block; }
+// .clearfix:after { content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; }
+// .clearfix { display: inline-block; }
 
-html[xmlns] .clearfix { display: block; }
-* html .clearfix { height: 1%; }
+// html[xmlns] .clearfix { display: block; }
+// * html .clearfix { height: 1%; }
 
 ::selection { background: #a4dcec; }
 ::-moz-selection { background: #a4dcec; }
