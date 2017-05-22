@@ -87,12 +87,8 @@
           <div class="panel-body">
             <ul class="list-group">
           <% category.display_current_user_goals(@user).each do |goal| %>
-            <li class="list-group-item"><a href="/goals/<%= goal.id %>"><%= goal.task %></a>
-              <% if !current_user.goals.include?(goal) %>
-                <%= link_to goals_users_path(goal_id: goal.id), method: :post, class: "add-goal-link btn btn-default btn-xs" do%>
-                  <span class="glyphicon glyphicon-plus"></span>
-                <% end %>
-              <% end %>
+            <li class="list-group-item" id="friend-goal-list-item"><a href="/goals/<%= goal.id %>"><%= goal.task %></a>
+            <%= render partial: 'goals/add_goal_item', locals: {goal: goal} %>
             </li>
           <% end %>
             </ul>
