@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+.navbar-right a {
+  color: white;
+}
+
+.navbar-right a:hover {
+  color: #337AB7;
+}
+
