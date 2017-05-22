@@ -1,10 +1,10 @@
 <div id="friends-feed" class="panel panel-warning">
   <div class="panel-heading">
-    <h4><a href="/users/<%= @user.id %>/friends">Friends (<%= @user.friends.count %>)</a></h4>
+    <h4>Friends (<%= @user.friends.count %>)</a></h4>
   </div>
   <div class="panel-body">
     <ul class="list-group">
-      <% @user.five_friends.each do |friend| %>
+      <% @user.friends.each do |friend| %>
         <li class="list-group-item friends-list"><a href="/users/<%= friend.id %>"><%= friend.username %></a></li>
       <% end %>
     </ul>
