@@ -53,13 +53,30 @@
         <% end %>
       </section>
       <section id="finished-goals" class="hidden">
-        <br>
         <% @categories.each do |category| %>
-          <ul class="list-group">
-            <% category.display_completed_user_goals(@user).each do |goal| %>
-                <li class="list-group-item"><a href="/goals/<%= goal.id %>"><%= goal.task %></a></li>
-            <% end %>
-          </ul>
+          <div class="row">
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h2><a href="/categories"><%=category.name %></a></h2>
+              </div>
+              <div class="panel-body">
+                <ul class="list-group">
+                  <% category.display_completed_user_goals(@user).each do |goal| %>
+                    <li class="row list-group-item">
+                      <div class="col-md-11">
+                        <a href="/goals/<%= goal.id %>"><%= goal.task %></a>
+                      </div>
+                      <div class="col-md-1">
+                        <%= link_to goals_users_return_basket_path(id: goal.id), method: :post do %>
+                          <%= render partial: 'goals/goal_not_in_basket' %>
+                        <% end %>
+                      </div>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
         <% end %>
       </section>
       <section id="friends" class="hidden">
@@ -120,11 +137,35 @@
         </section>
         <section id="finished-goals" class="hidden">
           <% @categories.each do |category| %>
-            <ul class="list-group">
-              <% category.display_completed_user_goals(@user).each do |goal| %>
-                <li class="list-group-item"><a href="/goals/<%= goal.id %>"><%= goal.task %></a></li>
-              <% end %>
-            </ul>
+            <div class="row">
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h2><a href="/categories/<%= category.id %>"><%=category.name %></a></h2>
+                </div>
+                <div class="panel-body">
+                  <ul class="list-group">
+                    <% category.display_completed_user_goals(@user).each do |goal| %>
+                      <li class="row list-group-item">
+                        <div class="col-md-11">
+                          <a href="/goals/<%= goal.id %>"><%= goal.task %></a>
+                        </div>
+                        <div class="col-md-1">
+                          <% if current_user.goals.include?(goal) %>
+                            <%= link_to goals_user_path(id: goal.id, user_id: @user.id), method: :delete do%>
+                              <%= render partial: 'goals/goal_in_basket' %>
+                            <% end %>
+                          <% else %>
+                            <%= link_to goals_users_path(goal_id: goal.id, user_id: @user.id), method: :post do %>
+                              <%= render partial: 'goals/goal_not_in_basket' %>
+                            <% end %>
+                          <% end %>
+                        </div>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+            </div>
           <% end %>
         </section>
         <section id="friends" class="hidden">

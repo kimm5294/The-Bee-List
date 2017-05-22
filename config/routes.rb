@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :connections, only: [:create, :destroy]
   resources :goals, only: [:show, :create]
   resources :goals_users, only: [:create, :destroy, :update]
+  post 'goals_users/return_basket' => 'goals_users#return_basket'
   resources :sessions, only: [:new, :create, :destroy]
   resources :users, only: [:destroy, :create, :update]
   resources :users do
