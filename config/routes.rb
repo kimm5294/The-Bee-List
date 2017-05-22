@@ -12,4 +12,8 @@ Rails.application.routes.draw do
   end
 
   get "/search" => 'categories#search'
+
+  resources :conversations do
+    resources :messages
+  end
 end

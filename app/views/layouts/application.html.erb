@@ -22,6 +22,7 @@
           <ul class="nav navbar-nav navbar-right">
             <% if logged_in? %>
               <li><%= link_to "Categories", categories_path %></li>
+              <li><%= link_to "Mailbox", conversations_path, class: "item" %></li>
               <li><%= link_to "Profile", user_path(current_user) %></li>
               <li><%= link_to "Log out", session_path(current_user), method: :delete %></li>
             <% else %>
