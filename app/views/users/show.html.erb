@@ -17,7 +17,7 @@
       </nav>
       <section id="uncomplete-goals" class="container-fluid">
         <% @categories.each do |category| %>
-          <div class="panel panel-warning">
+          <div class="panel panel-primary">
             <div class="panel-heading">
             <h2><a href="/categories"><%=category.name %></a></h2>
             </div>
@@ -80,7 +80,7 @@
       </nav>
       <section id="uncomplete-goals">
         <% @categories.each do |category| %>
-        <div class="panel panel-warning">
+        <div class="panel panel-primary">
           <div class="panel-heading">
             <h2><a href="/categories/<%= category.id %>"><%=category.name %></a></h2>
           </div>
