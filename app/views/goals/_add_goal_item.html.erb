@@ -1,5 +1,5 @@
 <% if !current_user.goals.include?(goal) %>
-  <%= link_to goals_users_path(goal_id: goal.id), remote: true, method: :post, class: "add-goal-link btn btn-default btn-xs", id: "add-goal-btn" do %>
-    <span class="glyphicon glyphicon-plus"></span>
+  <%= link_to goals_users_path(goal_id: goal.id), remote: true, method: :post do %>
+    <img src="/assets/bucket_filled.png" alt="" onmouseover="this.src='/assets/bucket_empty.png';" onmouseout="this.src='/assets/bucket_filled.png';" width="23" height="20">
   <% end %>
 <% end %>

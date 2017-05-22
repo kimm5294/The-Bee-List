@@ -1,7 +1,10 @@
-h2  {
-  font-family:"Apple Chancery";
+h2 {
   margin: auto;
+}
 
+h2 a {
+  font-family: "Verdana";
+  color: #FEFDFB;
 }
 
 .header-location {
