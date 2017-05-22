@@ -42,7 +42,7 @@ module CategoriesHelper
   end
 
   def google_places_search(database_ids)
-    client = GooglePlaces::Client.new("AIzaSyBjfu4hhTsevzx0eYFeqjzzsZ_TmktebN0")
+    client = GooglePlaces::Client.new(ENV['GOOGLE_KEY'])
     returns = client.predictions_by_input(params["search"], types:'(regions)')
     if returns.length == 0
       @errors = "No results found"
@@ -59,7 +59,7 @@ module CategoriesHelper
   end
 
   def google_restaurant_search(database_ids)
-    client = GooglePlaces::Client.new("AIzaSyBjfu4hhTsevzx0eYFeqjzzsZ_TmktebN0")
+    client = GooglePlaces::Client.new(ENV['GOOGLE_KEY'])
     returns = client.spots_by_query(params["search"], :types => ['restaurant', 'food', 'cafe'])
     if returns.length == 0
       @errors = "No results found"
