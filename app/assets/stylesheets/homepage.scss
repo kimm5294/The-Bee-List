@@ -100,7 +100,8 @@ color:#fff;
 .feature {
   height: 500px;
   background: url(http://www.afb.org/image.ashx?ImageID=7264);
-  background-size:cover;
+  background-size:100% 100%;
+  background-repeat: no-repeat;
 }
 .supporting .btn {
    	background-color:#4386FC;
