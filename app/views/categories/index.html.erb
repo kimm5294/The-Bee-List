@@ -3,7 +3,7 @@
   <div class="row">
     <% @categories.each do |category| %>
       <div class="col-xs-4">
-        <div class="panel panel-warning">
+        <div class="panel panel-primary">
 
           <div class="header-location panel-heading">
             <h2>
@@ -16,7 +16,7 @@
           <div class="modal fade" id="myModal-<%=category.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
-                <div class="modal-header bg-warning">
+                <div class="modal-header bg-primary">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   <h4 class="modal-title" id="myModalLabel"><%=category.name %> Search</h4>
                 </div>
