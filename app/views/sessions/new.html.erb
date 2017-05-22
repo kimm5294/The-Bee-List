@@ -1,6 +1,6 @@
 <form id="login-form" method="post" action="/sessions">
   <div class="imgcontainer">
-    <img src="/assets/img_avatar2.png" alt="Avatar" class="avatar">
+    <%= image_tag("img_avatar2.png", alt:"Avatar", class:"avatar") %>
   </div>
   <%= render 'shared/error_messages' %>
   <div class="container">
