@@ -1,4 +1,9 @@
 require 'omdbapi'
+
+AWS::S3::Base.establish_connection!(
+ :google_key => ENV['GOOGLE_KEY']
+)
+
 module CategoriesHelper
 
   def omdb_movie_search(database_ids)
