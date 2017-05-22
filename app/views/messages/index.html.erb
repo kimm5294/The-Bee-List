@@ -2,6 +2,12 @@
    <%= link_to 'Show Previous', '?m=all' %>
 <% end %>
 
+  <%if @conversation.recipient.first_name == current_user.first_name %>
+    <h3>Your Messages with <%= @conversation.sender.first_name %></h3>
+  <% else %>
+    <h3>Your Messages with <%= @conversation.recipient.first_name %></h3>
+  <% end %>
+  
 <div class="ui segment">
   <% @messages.each do |message| %>
     <% if message.body %>
@@ -20,6 +26,7 @@
     <% end %>
   <% end %>
 </div>
+
 
 <%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
   <div class="field">
