@@ -1,0 +1,5 @@
+<% if !current_user.goals.include?(goal) %>
+  <%= link_to goals_users_path(goal_id: goal.id), remote: true, method: :post, class: "add-goal-link btn btn-default btn-xs", id: "add-goal-btn" do %>
+    <span class="glyphicon glyphicon-plus"></span>
+  <% end %>
+<% end %>
