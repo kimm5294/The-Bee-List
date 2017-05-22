@@ -40,8 +40,8 @@
                         <% end %>
                       </div>
                       <div class="col-md-1">
-                        <%= link_to goals_user_path(goal.id), method: :delete do%>
-                          <img src="/assets/bucket_filled.png" alt="" onmouseover="this.src='/assets/bucket_empty.png';" onmouseout="this.src='/assets/bucket_filled.png';" width="23" height="20">
+                        <%= link_to goals_user_path(id: goal.id, user_id: current_user.id), method: :delete do%>
+                          <%= render partial: 'goals/goal_in_basket' %>
                         <% end %>
                       </div>
                     </li>
@@ -100,7 +100,15 @@
                           <a href="/goals/<%= goal.id %>"><%= goal.task %></a>
                         </div>
                         <div class="col-md-1">
-                          <%= render partial: 'goals/add_goal_item', locals: {goal: goal} %>
+                          <% if current_user.goals.include?(goal) %>
+                            <%= link_to goals_user_path(id: goal.id, user_id: @user.id), method: :delete do%>
+                              <%= render partial: 'goals/goal_in_basket' %>
+                            <% end %>
+                          <% else %>
+                            <%= link_to goals_users_path(goal_id: goal.id, user_id: @user.id), method: :post do %>
+                              <%= render partial: 'goals/goal_not_in_basket' %>
+                            <% end %>
+                          <% end %>
                         </div>
                       </li>
                     <% end %>

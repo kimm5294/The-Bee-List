@@ -2,10 +2,7 @@ class GoalsUsersController < ApplicationController
 
   def create
     goal = GoalsUser.create(user_id: current_user.id, goal_id: params[:goal_id])
-    if request.xhr?
-    else
-      redirect_to "/users/#{current_user.id}"
-    end
+    redirect_to "/users/#{params[:user_id]}"
   end
 
   def update
@@ -17,7 +14,7 @@ class GoalsUsersController < ApplicationController
   def destroy
     goal_user = GoalsUser.find_by(user: current_user, goal_id: params[:id])
     goal_user.destroy
-    redirect_to "/users/#{current_user.id}"
+    redirect_to "/users/#{params[:user_id]}"
   end
 
 end
