@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   resources :users do
     get "/friends" => "users#friends"
   end
+  
+  resources :conversation do
+    resources :messages
+  end
 
   get "/search" => 'categories#search'
 end
