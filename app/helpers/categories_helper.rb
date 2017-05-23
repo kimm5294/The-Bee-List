@@ -85,10 +85,13 @@ module CategoriesHelper
     else
       places = returns.select{ |place| !database_ids.include?(place.place_id)}
       api_results = places.map do |place|
+        spot = client.spot(place.place_id)
         place_info = []
         place_info.push(
           place.description,
-          place.place_id
+          place.place_id,
+          {},
+          spot.photos[0].fetch_url(800)
         )
       end
     end
