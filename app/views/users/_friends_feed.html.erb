@@ -1,8 +1,33 @@
 <div id="friends-feed" class="row panel panel-primary">
   <div class="panel-heading">
-    <h4>Friends (<%= @user.friends.count %>)</a></h4>
+    <div>
+      <h4 class="friends-title-header">
+        Friends (<%= @user.friends.count %>)
+      </h4>
+        <% if @user.id == current_user.id %>
+          <button class="btn btn-primary friends-search-button" type="button" data-toggle="collapse" data-target="#collapseSearchBar" aria-expanded="false" aria-controls="collapseSearchBar">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        <% end %>
+    </div>
+
+    <div class="collapse" id="collapseSearchBar">
+        <form class="friends-search-form navbar-form" method="GET" action="/friend_search" remote="true">
+          <input type="text" name="search" class="form-control" placeholder="Search">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </div>
   </div>
+
   <div class="panel-body">
+    <div class="friend-search-results">
+      <div class="friends-search-results-div">
+        <% if @results %>
+          <%= render partial: 'users/user_search_results', locals: {@results=> @results} %>
+        <% end %>
+      </div>
+    </div>
+
     <ul class="list-group">
       <% @user.friends.each do |friend| %>
         <li class="list-group-item friends-list"><a href="/users/<%= friend.id %>"><%= friend.username %></a></li>

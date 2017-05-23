@@ -69,4 +69,10 @@ class User < ApplicationRecord
     end
     friend_goals
   end
+
+  def self.search_for_friends(search_params)
+    select{|user| user.username.downcase.include?(search_params.downcase) || user.first_name.downcase.include?(search_params.downcase)}
+  end
+
+
 end

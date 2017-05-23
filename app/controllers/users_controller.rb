@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def show
     @user = User.find_by(id: params[:id])
     @categories = Category.all
@@ -20,6 +21,18 @@ class UsersController < ApplicationController
 
   def friends
     @user = User.find_by(id: params[:user_id])
+  end
+
+  def friend_search
+    @user = current_user
+    @categories = Category.all
+    @results = User.search_for_friends(params[:search])
+
+    if request.xhr?
+      render '/users/_user_search_results', layout: false
+    else
+      render 'show'
+    end
   end
 
   private

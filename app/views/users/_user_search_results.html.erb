@@ -1,0 +1,20 @@
+
+<% if @results.length == 0 %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4>No results</h4>
+    </div>
+  </div>
+<% else %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4>Results</h4>
+    </div>
+    <ul class="list-group">
+      <% @results.each do |result| %>
+        <li class="list-group-item"><a href="/users/<%=result.id %>"><%=result.username %></a></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
