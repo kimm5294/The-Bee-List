@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def show
     @user = User.find_by(id: params[:id])
     @categories = Category.all
@@ -20,6 +21,13 @@ class UsersController < ApplicationController
 
   def friends
     @user = User.find_by(id: params[:user_id])
+  end
+
+  def friend_search
+    @results = User.search_for_friends(params[:search])
+    @user = current_user
+    @categories = Category.all
+    render 'show'
   end
 
   private
