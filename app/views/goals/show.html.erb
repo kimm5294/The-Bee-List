@@ -22,10 +22,10 @@
           <% current_user.friends_with_goal(@goal).each do |friend| %>
             <div class="row friends-list-row">
                 <a class="goals-friends-list-link" href="/users/<%=friend.id%>"><%=friend.username %></a>
-                <button type="button" class="goals-friends-list-message-button btn btn-default btn-xs">
-                  <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                </button>
 
+                <%= link_to conversations_path(sender_id: current_user.id, recipient_id: friend.id), method: 'post', type:"button", class:"goals-friends-list-message-button btn btn-default btn-xs" do %>
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                <% end %>
 
             </div>
           <% end %>
