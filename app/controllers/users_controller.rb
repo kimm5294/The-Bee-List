@@ -24,10 +24,15 @@ class UsersController < ApplicationController
   end
 
   def friend_search
-    @results = User.search_for_friends(params[:search])
     @user = current_user
     @categories = Category.all
-    render 'show'
+    @results = User.search_for_friends(params[:search])
+
+    if request.xhr?
+      render '/users/_user_search_results', layout: false
+    else
+      render 'show'
+    end
   end
 
   private
