@@ -25,7 +25,6 @@ module CategoriesHelper
           movie_body["Poster"]
         )
       end
-      api_results
     end
   end
 
@@ -85,10 +84,13 @@ module CategoriesHelper
     else
       places = returns.select{ |place| !database_ids.include?(place.place_id)}
       api_results = places.map do |place|
+        spot = client.spot(place.place_id)
         place_info = []
         place_info.push(
           place.description,
-          place.place_id
+          place.place_id,
+          {},
+          spot.photos[0].fetch_url(800)
         )
       end
     end
@@ -107,6 +109,7 @@ module CategoriesHelper
         else
           open_now = "no"
         end
+        spot = client.spot(eat.place_id)
         place_info = []
         place_info.push(
           eat.name,
@@ -116,7 +119,8 @@ module CategoriesHelper
             "open now?": open_now,
             "price level (0-4)": eat.price_level,
             "Google rating": eat.rating
-          }
+          },
+          spot.photos[0].fetch_url(800)
         )
       end
     end
