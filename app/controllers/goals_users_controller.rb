@@ -2,7 +2,7 @@ class GoalsUsersController < ApplicationController
 
   def create
     goal = GoalsUser.create(user_id: current_user.id, goal_id: params[:goal_id])
-    redirect_to "/users/#{params[:user_id]}"
+    redirect_to "/users/#{current_user.id}"
   end
 
   def update
