@@ -12,7 +12,7 @@
     </div>
 
     <div class="collapse" id="collapseSearchBar">
-        <form class="navbar-form" method="GET" action="/friend_search">
+        <form class="friends-search-form navbar-form" method="GET" action="/friend_search" remote="true">
           <input type="text" name="search" class="form-control" placeholder="Search">
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
@@ -21,26 +21,11 @@
 
   <div class="panel-body">
     <div class="friend-search-results">
-      <% if @results %>
-        <% if @results.length == 0 %>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4>No results</h4>
-            </div>
-          </div>
-        <% else %>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4>Results</h4>
-            </div>
-            <ul class="list-group">
-              <% @results.each do |result| %>
-                <li class="list-group-item"><a href="/users/<%=result.id %>"><%=result.username %></a></li>
-              <% end %>
-            </ul>
-          </div>
+      <div class="friends-search-results-div">
+        <% if @results %>
+          <%= render partial: 'users/user_search_results', locals: {@results=> @results} %>
         <% end %>
-      <% end %>
+      </div>
     </div>
 
     <ul class="list-group">
