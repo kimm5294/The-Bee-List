@@ -13,42 +13,46 @@
               </button>
             </h2>
 
-          <div class="modal fade" id="myModal-<%=category.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header bg-primary">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel"><%=category.name %> Search</h4>
-                </div>
+            <div class="modal fade" id="myModal-<%=category.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header bg-primary">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"><%=category.name %> Search</h4>
+                  </div>
                   <form class="navbar-form" method="GET" action="/search">
                       <input type="hidden" name="cat_id" value="<%= category.id %>">
                       <input type="text" name="search" class="form-control" placeholder="Search">
                     <button type="submit" class="btn btn-default">Submit</button>
                   </form>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          </div>
 
 
           <div class="panel-body">
-            <h4 class="top-picks">Top Picks</h4>
-            <ul class="top-five-picks list-group">
+            <h4>Top Picks</h4>
+            <ul class="list-group">
               <% category.top_five_goals.each do |goal| %>
-                <li class="list-group-item top-five-list-items">
-                  <a href="/goals/<%= goal.id %>"><%= goal.task %></a>
-                  <% if current_user.goals.include?(goal) %>
-                    <%= link_to goals_user_path(id: goal.id), method: :delete do %>
-                      <%= render partial: 'goals/goal_in_basket' %>
+                <li class="row list-group-item">
+                  <div class="col-md-10">
+                    <a href="/goals/<%= goal.id %>"><%= goal.task %></a>
+                  </div>
+                  <div class="col-md-2">
+                    <% if current_user.goals.include?(goal) %>
+                      <%= link_to goals_user_path(id: goal.id), method: :delete do %>
+                        <%= render partial: 'goals/goal_in_basket' %>
+                      <% end %>
+                    <% else %>
+                      <%= link_to goals_users_path(goal_id: goal.id), method: :post do %>
+                        <%= render partial: 'goals/goal_not_in_basket' %>
+                      <% end %>
                     <% end %>
-                  <% else %>
-                    <%= link_to goals_users_path(goal_id: goal.id), method: :post do %>
-                      <%= render partial: 'goals/goal_not_in_basket' %>
-                    <% end %>
-                  <% end %>
+                  </div>
                 </li>
               <% end %>
             </ul>
