@@ -76,8 +76,8 @@ ol, ul { list-style: none; }
   padding: 8px 11px;
   font-size: 1.2em;
   font-weight: bold;
-  background: #eae8db;
-  color: #666;
+  background: white;
+  color: #000;
   margin-right: 7px;
   border: 1px solid #fff;
   -webkit-border-radius: 5px;
@@ -87,15 +87,16 @@ ol, ul { list-style: none; }
   border-radius: 5px;
   border-bottom-left-radius: 0;
 }
-#profiletabs ul li a:hover {
-  text-decoration: none;
-  background: #dad7c2;
-  color: #565656;
-}
 
 #profiletabs ul li a.sel {
-  background: #fff;
-  border-color: #d1cdb5;
+  background: #3071a9;
+  color: #fff;
+}
+
+#profiletabs ul li a:hover {
+  text-decoration: none;
+  background: lightblue;
+  color: #000;
 }
 
 /** profile content sections **/
@@ -111,30 +112,6 @@ ol, ul { list-style: none; }
 /** clearfix **/
 // .clearfix:after { content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; }
 .clearfix { display: inline-block; position: relative; right: 5.5%; }
-
-// html[xmlns] .clearfix { display: block; }
-// * html .clearfix { height: 1%; }
-
-::selection { background: #a4dcec; }
-::-moz-selection { background: #a4dcec; }
-::-webkit-selection { background: #a4dcec; }
-
-::-webkit-input-placeholder { /* WebKit browsers */
-  color: #ccc;
-  font-style: italic;
-}
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-  color: #ccc;
-  font-style: italic;
-}
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-  color: #ccc;
-  font-style: italic;
-}
-:-ms-input-placeholder { /* Internet Explorer 10+ */
-  color: #ccc !important;
-  font-style: italic;
-}
 
 .list-remove-item-button {
   float:right;
