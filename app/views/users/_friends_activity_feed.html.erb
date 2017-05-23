@@ -1,0 +1,10 @@
+<table id="friends_activities_feed">
+  <h4 id="friend-activity-header">Friend's Recent Activity</h4>
+  <% current_user.friends_activities_feed.each do |activity| %>
+    <tr>
+      <td>
+        <p><%= link_to activity.goal.task, goal_path(activity.goal) %> added to <%= link_to activity.user.username.capitalize, user_path(activity.user) %>'s bucket list</p>
+      </td>
+    </tr>
+  <% end %>
+</table>

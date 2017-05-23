@@ -8,6 +8,17 @@
     border: 3px solid #f1f1f1;
 }
 
+#friends-activity-feed {
+  float: right;
+  width: 25%;
+  margin-top: 14%;
+}
+
+#main-content {
+  float: left;
+  width: 75%;
+}
+
 /* Full-width inputs */
 input[id=reg-email], input[id=reg-password], input[id=reg-first-name], input[id=reg-last-name], input[id=reg-username], input[id=reg-password-confirmation] {
     width: 100%;
@@ -51,7 +62,7 @@ ol, ul { list-style: none; }
 /** page structure **/
 #content {
   // display: block;
-  width: 75%;
+  width: 90%;
   // margin: auto;
   // background: #fff;
   // padding: 25px 20px;
@@ -111,7 +122,9 @@ ol, ul { list-style: none; }
 
 /** clearfix **/
 // .clearfix:after { content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0; }
-.clearfix { display: inline-block; position: relative; right: 5.5%; }
+.clearfix { display: inline-block; position: relative; right: 6.3%; }
+
+.friend-clearfix { display: inline-block; position: relative; right: 5%; }
 
 .list-remove-item-button {
   float:right;
@@ -119,6 +132,10 @@ ol, ul { list-style: none; }
 
 .list-mark-done-button {
   float:right;
+}
+
+#friend-activity-header {
+  text-decoration: underline;
 }
 
 .panel-heading h2 a {

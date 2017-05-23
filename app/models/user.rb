@@ -55,4 +55,18 @@ class User < ApplicationRecord
     goal = self.goals_users.where("goal_id = '#{user_goal.id}'").first
     !goal.review.nil?
   end
+
+  def friends_activities_feed
+    self.friends_activities.sort_by { |activity| activity.updated_at }.reverse.take(10)
+  end
+
+  def friends_activities
+    friend_goals = []
+    self.friends.each do |friend|
+      friend.goals_users.each do |goals_user|
+        friend_goals << goals_user
+      end
+    end
+    friend_goals
+  end
 end
