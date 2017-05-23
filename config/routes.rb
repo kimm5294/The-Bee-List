@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   get "/search" => 'categories#search'
+  get "/friend_search" => 'users#friend_search'
 
   resources :conversations do
     resources :messages
