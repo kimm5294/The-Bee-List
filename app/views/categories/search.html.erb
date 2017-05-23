@@ -9,7 +9,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-5">
     <h3>Existing Goals</h3>
     <% index = 0 %>
     <% if @database_results %>
@@ -19,7 +19,7 @@
             <div class="panel panel-info">
               <div class="panel-heading" role="tab" id="heading<%= index %>">
                 <h4 class="panel-title">
-                  <div class="col-md-11">
+                  <div class="col-md-10">
                     <a class="panel-title" role="button" data-toggle="collapse" href="#collapse<%= index %>" aria-expanded="false" aria-controls="collapse<%= index %>">
                       <%= result.task %>
                     </a>
@@ -55,7 +55,9 @@
     <% end %>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-2"></div>
+
+  <div class="col-md-5">
     <h3>Be The First</h3>
     <% if @api_results %>
       <% @api_results.each do |result| %>
@@ -64,7 +66,7 @@
             <div class="panel panel-info">
               <div class="panel-heading" role="tab" id="heading<%= index %>">
                 <h4 class="panel-title">
-                  <div class="col-md-11">
+                  <div class="col-md-10">
                     <a role="button" data-toggle="collapse" href="#collapse<%= index %>" aria-expanded="false" aria-controls="collapse<%= index %>">
                       <%= result[0] %>
                     </a>
