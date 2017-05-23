@@ -10,7 +10,29 @@
 <% end %>
 
 <span class="goal-count"><strong><%= pluralize(@goal.users_count, 'person') %> added this to their bucket list.</strong></span>
-<span class="goal-count"><%= current_user.friends_with_goal(@goal).count %> <i>of your friends have added this goal.</i></span>
+<span class="goal-count"><a role="button" data-toggle="collapse" href="#collapseFriendsList" aria-expanded="false" aria-controls="collapseFriendsList"><%= current_user.friends_with_goal(@goal).count %> <i>of your friends</a> have added this goal.</i></span>
+<br>
+<div class="row">
+  <div class="col-md-2 collapse" id="collapseFriendsList">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Friends</h3>
+      </div>
+      <div class="panel-body">
+          <% current_user.friends_with_goal(@goal).each do |friend| %>
+            <div class="row friends-list-row">
+                <a class="goals-friends-list-link" href="/users/<%=friend.id%>"><%=friend.username %></a>
+
+                <%= link_to conversations_path(sender_id: current_user.id, recipient_id: friend.id), method: 'post', type:"button", class:"goals-friends-list-message-button btn btn-default btn-xs" do %>
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                <% end %>
+
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <div class="user-review-completed">

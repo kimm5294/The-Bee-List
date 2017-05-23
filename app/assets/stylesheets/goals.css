@@ -19,3 +19,17 @@
 .glyphicon-ok {
   font-size: 17px;
 }
+
+.goals-friends-list-link {
+  float:left;
+}
+
+.goals-friends-list-message-button {
+  float:right;
+}
+
+.friends-list-row {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
