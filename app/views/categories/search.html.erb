@@ -32,9 +32,10 @@
               <div class="panel-body">
                 <% if !!result.data %>
                   <% result.data.each do |key, value| %>
-                    <span class="goal-details"><strong><%= key %>:</strong> <%= value %></span>
+                    <span class="goal-details"><strong><%= key.capitalize %>:</strong> <%= value %></span>
                   <% end %>
                 <% end %>
+                <span class="goal-details"><%= link_to 'See More', goal_path(result) %></span>
               </div>
             </div>
           </div>
@@ -62,7 +63,7 @@
               <div class="panel-body">
                 <% if result[2] %>
                   <% result[2].each do |key, value| %>
-                    <span class="goal-details"><strong><%= key %>:</strong> <%= value %></span>
+                    <span class="goal-details"><strong><%= key.capitalize %>:</strong> <%= value %></span>
                   <% end %>
                 <% end %>
               </div>
