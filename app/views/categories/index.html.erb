@@ -34,13 +34,24 @@
           </div>
 
 
+
           <div class="panel-body">
             <h4>Top Picks</h4>
             <ul class="list-group">
               <% category.top_five_goals.each do |goal| %>
                 <li class="row list-group-item">
                   <div class="col-md-10">
-                    <a href="/goals/<%= goal.id %>"><%= goal.task %></a>
+
+                    <a tabindex="0" data-html="true" role="button" data-trigger="focus" data-toggle="popover" data-placement="auto" title='<a href="/goals/<%= goal.id %>"><%= goal.task %></a>' data-content="
+                      <% if !!goal.data %>
+                        <% goal.data.each do |key, value| %>
+                          <%= key.capitalize+": " %><%= value%>
+                        </br>
+                      <% end %>
+                    <% end %>">
+                      <%= goal.task %>
+                    </a>
+
                   </div>
                   <div class="col-md-2">
                     <% if current_user.goals.include?(goal) %>
