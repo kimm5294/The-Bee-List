@@ -40,9 +40,13 @@
               <% category.top_five_goals.each do |goal| %>
                 <li class="list-group-item top-five-list-items">
                   <a href="/goals/<%= goal.id %>"><%= goal.task %></a>
-                  <% if !current_user.goals.include?(goal) %>
-                    <%= link_to goals_users_path(goal_id: goal.id), method: :post, class: "add-goal-link btn btn-default btn-xs" do %>
-                      <span class="glyphicon glyphicon-plus"></span>
+                  <% if current_user.goals.include?(goal) %>
+                    <%= link_to goals_user_path(id: goal.id), method: :delete do %>
+                      <%= render partial: 'goals/goal_in_basket' %>
+                    <% end %>
+                  <% else %>
+                    <%= link_to goals_users_path(goal_id: goal.id), method: :post do %>
+                      <%= render partial: 'goals/goal_not_in_basket' %>
                     <% end %>
                   <% end %>
                 </li>
