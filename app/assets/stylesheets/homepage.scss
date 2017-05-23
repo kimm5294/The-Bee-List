@@ -97,12 +97,31 @@ html, body {
 }
 .app{width:87px}
 
-.feature {
-  height: 500px;
-  background: url(http://www.afb.org/image.ashx?ImageID=7264);
-  background-size:100% 100%;
-  background-repeat: no-repeat;
+.logged-out-hp {
+  text-align: center;
+  margin-bottom: 100px;
 }
+
+.movies-img {
+  margin-top: 5px;
+}
+
+.tv-img {
+  margin-top: 5px;
+}
+
+.books-img {
+  margin-top: 25px;
+}
+
+.travel-img {
+  margin-top: 10px;
+}
+
+.restaurants-img {
+  margin-top: 35px;
+}
+
 .supporting .btn {
   background-color:#4386FC;
   border:none;
