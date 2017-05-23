@@ -12,30 +12,35 @@
   <% @messages.each do |message| %>
     <% if message.body %>
       <% user = User.find(message.user_id) %>
+      <% if user == current_user %>
+      <% alignment = "right" %>
+      <% else %>
+      <% alignment =  "left" %>
+      <% end %>
       <div class="item">
         <div class="content">
-          <span class="list">
-            <span class="item">
+          <div class="list">
+            <div class="message-item speech-bubble <%= alignment%>">
               <%= message.body %>
-            </span>
-            <br>
-            <span class="header"><b>from <%= user.first_name %></b> on <%= message.message_time %></span>
-            <br>
-          </span>
+              <div class="header"><b>from <%= User.find(message.user_id).first_name %></b> on <%= message.message_time %></div>
+            </div>
+
+
+          </div>
         </div>
       </div>
       <br>
     <% end %>
   <% end %>
-</div>
-
-<%= form_for [@conversation, @message], html: {class: "message-form"} do |f| %>
+  <%= form_for [@conversation, @message], html: {class: "message-form"} do |f| %>
   <div class="field">
     <%= f.text_area :body , size: "43x4" %>
   </div>
-    <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
+  <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
   <div>
     <%= f.submit "Add Reply", class: "ui blue labeled submit icon button" %>
   </div>
+</div>
+
 
 <% end %>
