@@ -3,7 +3,7 @@
   <% current_user.friends_activities_feed.each do |activity| %>
     <tr>
       <td>
-        <p><%= activity.goal.task %> added to <%= link_to activity.user.username.capitalize, user_path(activity.user) %>'s bucket list</p>
+        <p><%= link_to activity.goal.task, goal_path(activity.goal) %> added to <%= link_to activity.user.username.capitalize, user_path(activity.user) %>'s bucket list</p>
       </td>
     </tr>
   <% end %>
