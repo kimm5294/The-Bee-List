@@ -1,8 +1,11 @@
 <div class="container">
-
 <% if logged_in? %>
   <% if @user.id == current_user.id %>
+    <div id="friends-activity-feed">
+      <%= render 'users/friends_activity_feed' %>
+    </div>
     <div id="content">
+      <div id="main-content">
       <div class="row">
         <% if !!@user.first_name %>
           <h1>Welcome Back, <%= @user.first_name %></h1>
@@ -82,6 +85,7 @@
       <section id="friends" class="hidden">
         <%= render 'users/friends_feed' %>
       </section>
+      </div>
     </div>
   <% else %>
     <div id="content">
@@ -95,7 +99,7 @@
         <br><br>
         <div class="row">
           <nav id="profiletabs">
-            <ul class="clearfix">
+            <ul class="friend-clearfix">
               <li><a href="#uncomplete-goals" class="sel">Goals to Complete</a></li>
               <li><a href="#finished-goals">Finished Goals</a></li>
               <li><a href="#friends">Friends</a></li>
