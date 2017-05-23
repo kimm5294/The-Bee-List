@@ -16,11 +16,11 @@
       <% @database_results.each do |result| %>
         <div class="row">
           <div class="panel-group" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
               <div class="panel-heading" role="tab" id="heading<%= index %>">
                 <h4 class="panel-title">
                   <div class="col-md-11">
-                    <a role="button" data-toggle="collapse" href="#collapse<%= index %>" aria-expanded="false" aria-controls="collapse<%= index %>">
+                    <a class="panel-title" role="button" data-toggle="collapse" href="#collapse<%= index %>" aria-expanded="false" aria-controls="collapse<%= index %>">
                       <%= result.task %>
                     </a>
                   </div>
@@ -59,28 +59,36 @@
     <h3>Be The First</h3>
     <% if @api_results %>
       <% @api_results.each do |result| %>
-        <div class="panel-group" role="tablist" aria-multiselectable="true">
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="heading<%= index %>">
-              <h4 class="panel-title">
-                <a role="button" data-toggle="collapse" href="#collapse<%= index %>" aria-expanded="false" aria-controls="collapse<%= index %>">
-                  <%= result[0] %>
-                </a>
-                | <span><%= link_to "Add to Goals", goals_path(category_id: @category.id, task: result[0], api_id: result[1], data: result[2], image_url: result[3]), method: :post%></span>
-              </h4>
-            </div>
-            <div id="collapse<%= index %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= index %>">
-              <div class="panel-body">
-                <% if result[2] %>
-                  <% result[2].each do |key, value| %>
-                    <span class="goal-details"><strong><%= key.capitalize %>:</strong> <%= value %></span>
+        <div class="row">
+          <div class="panel-group" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-info">
+              <div class="panel-heading" role="tab" id="heading<%= index %>">
+                <h4 class="panel-title">
+                  <div class="col-md-11">
+                    <a role="button" data-toggle="collapse" href="#collapse<%= index %>" aria-expanded="false" aria-controls="collapse<%= index %>">
+                      <%= result[0] %>
+                    </a>
+                  </div>
+                  <div class="col-md-1">
+                    <%= link_to goals_path(category_id: @category.id, task: result[0], api_id: result[1], data: result[2], image_url: result[3]), method: :post do %>
+                      <%= render partial: 'goals/goal_not_in_basket' %>
+                    <% end %>
+                  </div>
+                </h4>
+              </div>
+              <div id="collapse<%= index %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= index %>">
+                <div class="panel-body">
+                  <% if result[2] %>
+                    <% result[2].each do |key, value| %>
+                      <span class="goal-details"><strong><%= key.capitalize %>:</strong> <%= value %></span>
+                    <% end %>
                   <% end %>
-                <% end %>
+                </div>
               </div>
             </div>
           </div>
+          <% index += 1 %>
         </div>
-        <% index += 1 %>
       <% end %>
     <% end %>
   </div>
