@@ -5,3 +5,38 @@ h3 {
   text-decoration: underline;
   color: #337ab7;
 }
+
+.message-box{
+  background-color: #e6e6e6;
+  width: 323px;
+}
+
+.message-box .item .content:nth-child(odd) {background: #4dff4d}
+
+
+
+.message-box .item .content .list .header{
+  font-size: .70em;
+   font-style: italic;
+ }
+
+.message-box .item .content .list {
+	position: relative;
+	background: #4dff4d;
+	border-radius: .4em;
+}
+
+// .message-box .item .content .list .speech-bubble:after {
+// 	content: '';
+// 	position: absolute;
+// 	bottom: 0;
+// 	left: 50%;
+// 	width: 0;
+// 	height: 0;
+// 	border: 23px solid transparent;
+// 	border-top-color: #23bb24;
+// 	border-bottom: 0;
+// 	border-left: 0;
+// 	margin-left: -11.5px;
+// 	margin-bottom: -23px;
+// }

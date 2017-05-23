@@ -7,19 +7,21 @@
   <% else %>
     <h3>Your Messages with <%= @conversation.recipient.first_name %></h3>
   <% end %>
-  
-<div class="ui segment">
+
+<div class='message-box'>
   <% @messages.each do |message| %>
     <% if message.body %>
       <% user = User.find(message.user_id) %>
       <div class="item">
         <div class="content">
-          <div class="header"><strong><%= user.first_name %></strong> <%= message.message_time %></div>
-          <div class="list">
-            <div class="item">
+          <span class="list">
+            <span class="item">
               <%= message.body %>
-            </div>
-          </div>
+            </span>
+            <br>
+            <span class="header"><b>from <%= user.first_name %></b> on <%= message.message_time %></span>
+            <br>
+          </span>
         </div>
       </div>
       <br>
@@ -27,10 +29,9 @@
   <% end %>
 </div>
 
-
-<%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
+<%= form_for [@conversation, @message], html: {class: "message-form"} do |f| %>
   <div class="field">
-    <%= f.text_area :body, class: "form-control" %>
+    <%= f.text_area :body , size: "43x4" %>
   </div>
     <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
   <div>
