@@ -1,7 +1,7 @@
 <div class="container">
 
 <img id="goal-picture" src="<%= @goal.image_url %>" alt="">
-<h1><%= @goal.task %></h1>
+<h1 id="goal-h1"><%= @goal.task %></h1>
 <% if !current_user.goals.include?(@goal) %>
   <span><%= link_to "Add to Goals", goals_users_path(goal_id: @goal.id), method: :post%></span>
 <% end %>
