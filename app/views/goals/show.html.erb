@@ -1,15 +1,25 @@
 <div class="container">
-
-<img id="goal-picture" src="<%= @goal.image_url %>" alt="">
+<% if @goal.image_url != "N/A" %>
+  <img id="goal-picture" src="<%= @goal.image_url %>" alt="">
+<% end %>
 <h1 id="goal-h1"><%= @goal.task %></h1>
-<% if !current_user.goals.include?(@goal) %>
-  <span><%= link_to "Add to Goals", goals_users_path(goal_id: @goal.id), method: :post%></span>
-<% end %>
-<% if @goal.data %>
-  <% @goal.data.each do |key, value| %>
-    <p class="goal-details"><span id="key"><%= key %></span><%= value %></p>
+<div class="add-goal">
+  <% if current_user.goals.include?(@goal) %>
+    <%= link_to goals_user_path(id: @goal.id, user_id: current_user.id), method: :delete do %>
+      <%= render partial: 'goals/goal_in_basket' %>
+    <% end %>
+  <% else %>
+    <%= link_to goals_users_path(goal_id: @goal.id, user_id: current_user.id), method: :post do %>
+      <%= render partial: 'goals/goal_not_in_basket' %>
+    <% end %>
   <% end %>
-<% end %>
+
+  <% if @goal.data %>
+    <% @goal.data.each do |key, value| %>
+      <p class="goal-details"><span id="key"><%= key %></span><%= value %></p>
+    <% end %>
+  <% end %>
+</div>
 
 <div class="goal-count">
   <p>This has been added to <%= pluralize(@goal.users_count, 'bucket list') %>.</p>

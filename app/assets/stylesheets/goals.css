@@ -11,6 +11,10 @@
   padding: 5px;
 }
 
+.add-goal {
+  display: block;
+}
+
 .goal-count {
   margin-top: 20px;
   display: inline-block;
