@@ -51,8 +51,7 @@ class User < ApplicationRecord
   end
 
   def wrote_review_already?(user_goal)
-    goal = self.goals_users.where("goal_id = '#{user_goal.id}'").first
-    !goal.review.nil?
+    !!self.goals_users.find_by(goal: user_goal).review
   end
 
   def friends_activities_feed
