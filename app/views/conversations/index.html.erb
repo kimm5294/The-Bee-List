@@ -1,32 +1,34 @@
-<div class="ui segment">
-  <h3>Mailbox</h3>
-
-  <div class="ui list">
-    <div class="item">
-      <% @conversations.each do |conversation| %>
-        <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
-          <% if conversation.sender_id == current_user.id %>
-            <% recipient = User.find(conversation.recipient_id) %>
-          <% else %>
-            <% recipient = User.find(conversation.sender_id) %>
-          <% end %>
-          <%= link_to recipient.first_name, conversation_messages_path(conversation)%><br>
-        <% end %>
+<div class="container">
+  <div class="ui-segment">
+    <h3>My Friends List</h3>
+    <div class="friend-ui-list">
+      <% @user.friends.each do |user| %>
+      <% if user.id != current_user.id %>
+      <div class="friend-item">
+        <span>
+          Message: <%= link_to user.first_name, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%>
+        </span>
+      </div>
+      <% end %>
       <% end %>
     </div>
   </div>
-</div>
 
-
-<div class="ui segment">
-  <h3>My Friends</h3>
-  <div class="ui list">
-    <% @user.friends.each do |user| %>
-      <% if user.id != current_user.id %>
+  <div class="ui-segment">
+    <h3>Active Conversations</h3>
+    <div class="active-ui-list">
       <div class="item">
-        <%= user.first_name %> <-<-<-< <%= link_to "Slide in those DM's!", conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'%>
+        <% @conversations.each do |conversation| %>
+          <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+            <% if conversation.sender_id == current_user.id %>
+              <% recipient = User.find(conversation.recipient_id) %>
+            <% else %>
+              <% recipient = User.find(conversation.sender_id) %>
+            <% end %>
+            <%= link_to recipient.first_name, conversation_messages_path(conversation)%><br>
+          <% end %>
+        <% end %>
       </div>
-      <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
