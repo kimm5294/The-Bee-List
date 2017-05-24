@@ -1,1 +1,2 @@
-<img src="/assets/bucket_empty.png" alt="" onmouseover="this.src='/assets/bucket_filled.png';" onmouseout="this.src='/assets/bucket_empty.png';" width="23" height="20">
+<%= image_tag("bucket_empty.png", alt:"", onmouseover: "this.src='#{asset_path('bucket_filled.png')}'", onmouseout: "this.src='#{asset_path('bucket_empty.png')}'", width: "23", height: "20" ) %>
+
