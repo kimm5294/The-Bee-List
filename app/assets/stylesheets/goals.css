@@ -33,3 +33,7 @@
   padding-right: 10%;
 }
 
+#key {
+  font-variant: small-caps;
+  margin-right: 15px;
+}
