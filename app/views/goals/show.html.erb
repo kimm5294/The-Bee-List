@@ -30,13 +30,12 @@
       <div class="collapse" id="collapseFriendsList">
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <h3 class="panel-title">Friends</h3>
+            <h3 class="panel-title" id="friends-goal-list-header">Friends</h3>
           </div>
           <div class="panel-body">
               <% current_user.friends_with_goal(@goal).each do |friend| %>
                 <div class="row friends-list-row">
                     <a class="goals-friends-list-link" href="/users/<%=friend.id%>"><%=friend.username %></a>
-
                     <%= link_to conversations_path(sender_id: current_user.id, recipient_id: friend.id), method: 'post', type:"button", class:"goals-friends-list-message-button btn btn-default btn-xs" do %>
                         <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
                     <% end %>

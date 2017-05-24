@@ -58,3 +58,9 @@
   padding-right: 15px;
   padding-left: 15px;
 }
+
+#friends-goal-list-header {
+  color: white;
+  padding-left: 20px;
+  margin-bottom: -15px;
+}
