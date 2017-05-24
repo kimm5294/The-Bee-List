@@ -54,7 +54,7 @@
 <div class="user-review-completed">
   <h4>Reviews</h4>
   <% if current_user.goals.include?(@goal) %>
-    <% if current_user.completed_goal?(@goal) && !current_user.wrote_review_already?(@goal) %>
+    <% if current_user.completed_goal?(@goal) && !current_user.reviewed?(@goal) %>
       <h5>Add Review:</h5>
       <%= form_tag(goals_user_path(@goal.id, completed: true), method: :put) do %>
         <%= text_area_tag(:review, "", size: "36x6") %><br>
