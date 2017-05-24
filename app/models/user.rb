@@ -47,8 +47,7 @@ class User < ApplicationRecord
   end
 
   def completed_goal?(user_goal)
-    goal = self.goals_users.where("goal_id = '#{user_goal.id}'").first
-    goal.completed
+    self.goals_users.find_by(goal: user_goal).completed
   end
 
   def wrote_review_already?(user_goal)
