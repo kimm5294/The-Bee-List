@@ -3,11 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #login-form {
     border: 3px solid #f1f1f1;
+    background-image: url("https://wallpaperscraft.com/image/circles_highlights_background_form_size_47438_3840x2400.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: right bottom;
 }
 
 /* Full-width inputs */
 input[id=login-email], input[id=login-password] {
-    width: 100%;
+    width: 90%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -17,13 +21,26 @@ input[id=login-email], input[id=login-password] {
 
 /* Set a style for all buttons */
 #login-button {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #EEE;
+    color: black;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 90%;
+}
+
+#login-label {
+    display: block;
+    color: white;
+    font-family: Georgia;
+}
+
+.login-header {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    color: white;
+    font-family: Georgia;
 }
 
 /* Add a hover effect for buttons */
@@ -46,4 +63,8 @@ img.avatar {
 /* Add padding to containers */
 .container {
     padding: 16px;
+}
+
+.login-container {
+    margin-right: 50px;
 }
