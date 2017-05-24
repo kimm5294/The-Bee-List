@@ -33,3 +33,12 @@
   padding-right: 10%;
 }
 
+.friends-goal-list-header {
+  color: red;
+  background-color: red;
+}
+
+#goal-friends-list {
+  color: white;
+  text-align:center;
+}
