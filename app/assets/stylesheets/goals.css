@@ -8,14 +8,15 @@
 }
 
 .goal-details {
-  /*margin-top: 10px;*/
   padding: 5px;
-  display: block;
 }
 
 .goal-count {
-  display: block;
-  clear: both;
+  margin-top: 20px;
+  display: inline-block;
+  border-radius: 8px;
+  background: #f7f7f9;
+  padding: 15px;
 }
 
 .glyphicon-ok {
@@ -37,9 +38,19 @@
 
 #key {
   font-variant: small-caps;
-  margin-right: 15px;
+  margin-right: 18px;
 }
 
 #goal-h1 {
   margin-top: 0;
+}
+
+.user-review-completed {
+  clear: both;
+  padding-top: 10px;
+}
+
+#friends_collapse {
+  padding-right: 15px;
+  padding-left: 15px;
 }
