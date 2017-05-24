@@ -50,7 +50,7 @@ class User < ApplicationRecord
     self.goals_users.find_by(goal: user_goal).completed
   end
 
-  def wrote_review_already?(user_goal)
+  def reviewed?(user_goal)
     !!self.goals_users.find_by(goal: user_goal).review
   end
 
