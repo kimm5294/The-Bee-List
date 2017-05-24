@@ -24,8 +24,6 @@
               <%= message.body %>
               <div class="header"><b>from <%= User.find(message.user_id).first_name %></b> on <%= message.message_time %></div>
             </div>
-
-
           </div>
         </div>
       </div>
@@ -41,6 +39,5 @@
     <%= f.submit "Add Reply", class: "ui blue labeled submit icon button" %>
   </div>
 </div>
-
-
+<br>
 <% end %>
