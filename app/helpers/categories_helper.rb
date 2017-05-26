@@ -1,7 +1,6 @@
 module CategoriesHelper
 
   def omdb_movie_search(database_ids)
-    # query = params["search"].to_query('')
     uri = URI.parse("http://www.omdbapi.com/?apikey=#{ENV['IMDB_KEY']}&s=#{params["search"]}")
     response = Net::HTTP.get_response(uri)
     body = JSON.parse(response.body)
